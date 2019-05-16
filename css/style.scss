@@ -1,0 +1,94 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-height: 500px;
+
+  .nav-container {
+    .logo {
+      font-size: 8rem;
+      cursor: default;
+    }
+
+    .nav {
+      .links {
+        display: flex;
+        justify-content: space-around;
+        cursor: default;
+
+        a {
+          transition: 0.2s;
+
+          &:hover {
+            color: blue;
+          }
+        }
+      }
+
+      .works-holder {
+        overflow: hidden;
+        height: 20px;
+        //border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .works {
+          transition: 0.5s;
+          display: none;
+          transform: translate(0, 100%);
+          &.active {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  .socials {
+    display: flex;
+    justify-content: space-around;
+
+    div {
+      width: 50px;
+      height: 50px;
+      margin: 0 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.telegram {
+        background: url("http://www.logospng.com/images/119/social-media-telegram-flat-black-icon-119580.png") no-repeat center;
+        background-size: contain;
+      }
+
+      &.twitter {
+        background: url("https://s3.amazonaws.com/peoplepng/wp-content/uploads/2018/06/27151352/twitter-png-black.png") no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+}
