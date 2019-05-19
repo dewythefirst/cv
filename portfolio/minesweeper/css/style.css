@@ -39,6 +39,7 @@ a {
 .wrapper .settings .get-started input {
   border: 1px solid lightgray;
   margin-right: 3px;
+  width: 100px;
 }
 .wrapper .settings .get-started .generate {
   background-color: lightgray;
@@ -83,7 +84,7 @@ a {
   background-color: #d9f5ff;
 }
 .wrapper #tableHolder table tr td:hover {
-  background-color: white;
+  background-color: #c8e3ed;
 }
 
 .game-over {

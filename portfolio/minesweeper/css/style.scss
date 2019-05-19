@@ -37,6 +37,7 @@ a {
       input {
         border: 1px solid lightgray;
         margin-right: 3px;
+        width: 100px;
       }
 
       .generate {
@@ -85,7 +86,7 @@ a {
           background-color: #d9f5ff;
 
           &:hover {
-            background-color: white;
+            background-color: #c8e3ed;
           }
         }
       }
