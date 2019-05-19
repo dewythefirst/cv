@@ -37,18 +37,10 @@ a {
 }
 .main-wrapper .nav-container .nav .works-holder {
   overflow: hidden;
-  height: 20px;
+  height: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.main-wrapper .nav-container .nav .works-holder .works {
-  transition: 0.5s;
-  display: none;
-  transform: translate(0, 100%);
-}
-.main-wrapper .nav-container .nav .works-holder .works.active {
-  transform: none;
 }
 
 footer {

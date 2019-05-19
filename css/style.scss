@@ -43,19 +43,10 @@ a {
 
       .works-holder {
         overflow: hidden;
-        height: 20px;
-        //border: 1px solid black;
+        height: 0px;
         display: flex;
         justify-content: center;
         align-items: center;
-        .works {
-          transition: 0.5s;
-          display: none;
-          transform: translate(0, 100%);
-          &.active {
-            transform: none;
-          }
-        }
       }
     }
   }
