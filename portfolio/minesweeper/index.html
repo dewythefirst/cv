@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MineSweeper</title>
+    <title>Lab</title>
+    <!--<base href="http://" target="_blank">-->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<div class="wrapper" id="wrapper">
+    <div class="settings">
+        <div class="get-started">
+            <input type="text" id="cols" value="8" placeholder="Columns">
+            <input type="text" id="rows" value="8" placeholder="Rows">
+            <div id="generateButton" class="generate">Generate</div>
+        </div>
+        <div class="statistics">
+            <span class="score">Score: <span>0</span></span>
+            <span class="time">00:00</span>
+            <span class="bombs-count"><span>0</span>/<span>0</span></span>
+        </div>
+    </div>
+    <div id="tableHolder"></div>
+</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
+<script src="js/main.js"></script>
 </body>
 </html>
