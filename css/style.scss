@@ -46,6 +46,13 @@ a {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        a {
+          transition: 0.2s;
+
+          &:hover {
+            color: blue;
+          }
+        }
       }
     }
   }
