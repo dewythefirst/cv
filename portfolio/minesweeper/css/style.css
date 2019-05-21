@@ -15,15 +15,34 @@ a {
   color: black;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+header .logo {
+  font-size: 3rem;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid lightgray;
+  border: 1px solid #f4f4f4;
   border-radius: 8px;
-  max-width: 80%;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
+}
+@media only screen and (max-width: 750px) {
+  .wrapper {
+    min-width: 650px;
+  }
 }
 .wrapper .settings {
   display: flex;

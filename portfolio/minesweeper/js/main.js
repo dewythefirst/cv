@@ -122,7 +122,7 @@ function openCell(element) {
         }
     }
     if (openCells == ((globalCols.value * globalRows.value) - bombsNumber)) {
-        table.innerHTML += '<div class="win"><span>YOU WIN!</span><img src="../images/win.png" style="object-fit: contain" width="100" height="100"></div>';
+        table.innerHTML += '<div class="win"><span>YOU WIN!</span><img src="../minesweeper/images/win.png" style="object-fit: contain" width="100" height="100"></div>';
         timer.stop();
         showBombs(bombsArray, true);
     }
