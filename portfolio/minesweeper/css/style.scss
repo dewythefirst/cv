@@ -8,6 +8,7 @@ body {
   overflow: visible;
   margin: 0;
   padding: 0;
+  //font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -70,22 +71,23 @@ a {
     position: relative;
     margin-top: 10px;
     table {
+      table-layout: fixed;
       border: 1px solid lightgray;
       margin: 0 auto;
       border-collapse: collapse;
       table-layout: fixed;
 
       tr {
-        min-height: 40px;
-
         td {
           border: 1px solid lightgray;
           width: 25px;
           height: 25px;
           transition: 0.1s;
           background-color: #d9f5ff;
+          overflow: hidden;
 
           &:hover {
+            cursor: default;
             background-color: #c8e3ed;
           }
         }
@@ -122,17 +124,17 @@ a {
 }
 
 .flag {
-  background: url("https://pngimage.net/wp-content/uploads/2018/06/флажок-png-4.png") no-repeat center;
+  background: url("../images/flag.png") no-repeat center;
   background-size: contain;
 }
 
 .question {
-  background: url("http://pngimg.com/uploads/question_mark/question_mark_PNG66.png") no-repeat center;
+  background: url("../images/question.png") no-repeat center;
   background-size: contain;
 }
 
 .bomb {
-  background: url("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/65/bomb_1f4a3.png") no-repeat center;
+  background: url("../images/bomb.png") no-repeat center;
   background-size: contain;
 
   &.active {
