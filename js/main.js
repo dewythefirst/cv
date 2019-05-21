@@ -33,4 +33,4 @@ let passedTimeCounter = function (date) {
         seconds = difference.getSeconds();
     passedTimeHolder.innerText = days + " days " + ((hours < 10) ? "0" : "") + hours + ":" + ((minutes < 10) ? "0" : "") + minutes + ":" + ((seconds < 10) ? "0" : "") + seconds;
 };
-setInterval(passedTimeCounter, 1000, "2019-05-19 19:55 GMT+3");
+setInterval(passedTimeCounter, 1000, "2019/05/19 19:55 GMT+3");
