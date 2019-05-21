@@ -43,6 +43,11 @@ a {
   font-size: 8rem;
   cursor: default;
 }
+@media only screen and (max-width: 750px) {
+  .main-wrapper .nav-container .logo {
+    font-size: 3rem;
+  }
+}
 .main-wrapper .nav-container .nav .links {
   display: flex;
   justify-content: space-around;
