@@ -8,17 +8,34 @@ html, body {
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 500px;
+}
+
 a {
   text-decoration: none;
   color: black;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+}
+.header .passed-time {
+  animation: tick ease infinite normal 1s;
 }
 
 .main-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  min-height: 500px;
 }
 .main-wrapper .nav-container .logo {
   font-size: 8rem;
@@ -49,12 +66,6 @@ a {
   color: blue;
 }
 
-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
 footer .socials {
   display: flex;
   justify-content: space-around;
@@ -74,6 +85,15 @@ footer .socials div.telegram {
 footer .socials div.twitter {
   background: url("https://s3.amazonaws.com/peoplepng/wp-content/uploads/2018/06/27151352/twitter-png-black.png") no-repeat center;
   background-size: contain;
+}
+
+@keyframes tick {
+  0% {
+    filter: blur(1.5px);
+  }
+  100% {
+    filter: none;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
