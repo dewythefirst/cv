@@ -25,7 +25,7 @@ let passedTimeHolder = document.querySelector(".passed-time");
 let passedTimeCounter = function (date) {
     date = new Date(date);
     let dateNow = new Date();
-    // console.log(date, dateNow);
+    console.log(date, dateNow);
     let difference = new Date(dateNow - date);
     let days = Math.round((dateNow.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)),
         hours = difference.getHours(),
@@ -34,4 +34,4 @@ let passedTimeCounter = function (date) {
     passedTimeHolder.innerText = days + " days " + ((hours < 10) ? "0" : "") + hours + ":" + ((minutes < 10) ? "0" : "") + minutes + ":" + ((seconds < 10) ? "0" : "") + seconds;
     passedTimeHolder.style.animationPlayState = "running";
 };
-setInterval(passedTimeCounter, 1000, "2019/05/19 19:55 GMT+0300");
+setInterval(passedTimeCounter, 1000, "2019/05/19 19:55 GMT+03:00");
