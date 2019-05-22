@@ -30,6 +30,7 @@ a {
 }
 .header .passed-time {
   animation: tick ease infinite normal 1s;
+  animation-play-state: paused;
   min-height: 25px;
 }
 
@@ -41,6 +42,11 @@ a {
 .main-wrapper .nav-container .logo {
   font-size: 8rem;
   cursor: default;
+}
+@media only screen and (max-width: 750px) {
+  .main-wrapper .nav-container .logo {
+    font-size: 3rem;
+  }
 }
 .main-wrapper .nav-container .nav .links {
   display: flex;
