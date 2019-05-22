@@ -86,7 +86,7 @@ header .logo {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(185, 217, 249, 0.7);
+  background-color: rgba(185, 217, 249, 0.5);
   justify-content: center;
   align-items: center;
   display: none;
@@ -95,6 +95,7 @@ header .logo {
   display: flex;
 }
 .main-wrapper .toe-wrapper .game-space .cover span {
+  text-align: center;
   font-size: 3rem;
   cursor: pointer;
   text-shadow: 0 0 10px #FFFFFF;

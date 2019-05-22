@@ -1,5 +1,6 @@
 let gameSpace = document.querySelector(".game-space");
 gameSpace.addEventListener("click", gameSpaceClick);
+let cover = document.querySelector(".cover");
 
 function gameSpaceClick(e) {
     let target = e.target;
@@ -46,6 +47,7 @@ function Players() {
 
 function Game() {
     let isRunning = false;
+    let moveCounter = 0;
     this.initialize = function () {
         let cover = document.querySelector(".cover");
         if (!isRunning) {
@@ -56,9 +58,14 @@ function Game() {
             isRunning = !isRunning;
             throw "Game is already running";
         }
+        let cells = Array.from(gameSpace.querySelectorAll(".cell"));
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerText = "";
+            cells[i].classList.remove("open");
+        }
+        moveCounter = 0;
         players.changeTurn();
     };
-    let moveCounter = 0;
     this.increaseCounter = function () {
         moveCounter++;
     };
@@ -74,6 +81,13 @@ function Game() {
         }
         element.classList.add("open");
         game.increaseCounter();
+        if (moveCounter === 9) {
+            cover.querySelector("span").innerHTML = "DRAW<br>CLICK TO START";
+            cover.classList.add("active");
+            isRunning = !isRunning;
+            timer.stop();
+            return;
+        }
         players.changeTurn();
     }
 }
