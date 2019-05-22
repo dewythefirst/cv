@@ -25,13 +25,13 @@ let passedTimeHolder = document.querySelector(".passed-time");
 let passedTimeCounter = function (date) {
     date = new Date(date);
     let dateNow = new Date();
-    console.log(date, dateNow);
-    let difference = new Date(dateNow - date);
-    let days = Math.round((dateNow.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)),
-        hours = difference.getHours(),
+    let difference = dateNow.getTime() - date.getTime();
+    difference = new Date(difference);
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours = Math.round((difference / (1000 * 60 * 60)) % 24),
         minutes = difference.getMinutes(),
         seconds = difference.getSeconds();
     passedTimeHolder.innerText = days + " days " + ((hours < 10) ? "0" : "") + hours + ":" + ((minutes < 10) ? "0" : "") + minutes + ":" + ((seconds < 10) ? "0" : "") + seconds;
     passedTimeHolder.style.animationPlayState = "running";
 };
-setInterval(passedTimeCounter, 1000, "2019/05/19 19:55 GMT+03:00");
+setInterval(passedTimeCounter, 1000, "2019/05/19 19:55 GMT+0300");
