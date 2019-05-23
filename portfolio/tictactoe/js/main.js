@@ -16,7 +16,50 @@ function gameSpaceClick(e) {
     }
 }
 
-function Players() {
+function Game() {
+    let isRunning = false;
+    let moveCounter = 0;
+    this.initialize = function () {
+        let cover = document.querySelector(".cover");
+        if (!isRunning) {
+            cover.classList.remove("active");
+            isRunning = !isRunning;
+        } else {
+            cover.classList.add("active");
+            isRunning = !isRunning;
+            throw "Game is already running";
+        }
+        let cells = Array.from(gameSpace.querySelectorAll(".cell"));
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerText = "";
+            cells[i].classList.remove("open");
+        }
+        moveCounter = 0;
+        this.changeTurn();
+    };
+    this.increaseCounter = function () {
+        moveCounter++;
+    };
+    this.makeMove = function (e) {
+        let element = e.target;
+        if (element.classList.contains("open"))
+            return;
+        if (!playerTurn) {
+            element.innerText = "o";
+        } else {
+            element.innerText = "x";
+        }
+        element.classList.add("open");
+        game.increaseCounter();
+        if (moveCounter === 9) {
+            cover.querySelector("span").innerHTML = "DRAW.<br>CLICK TO START";
+            cover.classList.add("active");
+            isRunning = !isRunning;
+            timer.stop();
+            return;
+        }
+        this.changeTurn();
+    };
     let playerTurn = null;
     this.changeTurn = function () {
         if (playerTurn == null) {
@@ -40,56 +83,6 @@ function Players() {
         timer.reset();
         timer.start();
     };
-    this.getPlayerTurn = function () {
-        return playerTurn;
-    };
-}
-
-function Game() {
-    let isRunning = false;
-    let moveCounter = 0;
-    this.initialize = function () {
-        let cover = document.querySelector(".cover");
-        if (!isRunning) {
-            cover.classList.remove("active");
-            isRunning = !isRunning;
-        } else {
-            cover.classList.add("active");
-            isRunning = !isRunning;
-            throw "Game is already running";
-        }
-        let cells = Array.from(gameSpace.querySelectorAll(".cell"));
-        for (var i = 0; i < cells.length; i++) {
-            cells[i].innerText = "";
-            cells[i].classList.remove("open");
-        }
-        moveCounter = 0;
-        players.changeTurn();
-    };
-    this.increaseCounter = function () {
-        moveCounter++;
-    };
-    this.makeMove = function (e) {
-        let element = e.target;
-        if (element.classList.contains("open"))
-            return;
-        let playerTurn = players.getPlayerTurn();
-        if (!playerTurn) {
-            element.innerText = "o";
-        } else {
-            element.innerText = "x";
-        }
-        element.classList.add("open");
-        game.increaseCounter();
-        if (moveCounter === 9) {
-            cover.querySelector("span").innerHTML = "DRAW.<br>CLICK TO START";
-            cover.classList.add("active");
-            isRunning = !isRunning;
-            timer.stop();
-            return;
-        }
-        players.changeTurn();
-    }
 }
 
 function Timer() {
@@ -122,5 +115,4 @@ function Timer() {
 }
 
 let game = new Game();
-let players = new Players();
 let timer = new Timer();
