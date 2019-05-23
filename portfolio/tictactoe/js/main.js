@@ -82,7 +82,7 @@ function Game() {
         element.classList.add("open");
         game.increaseCounter();
         if (moveCounter === 9) {
-            cover.querySelector("span").innerHTML = "DRAW<br>CLICK TO START";
+            cover.querySelector("span").innerHTML = "DRAW.<br>CLICK TO START";
             cover.classList.add("active");
             isRunning = !isRunning;
             timer.stop();
@@ -104,11 +104,10 @@ function Timer() {
             timePassed = new Date(endTime - timeNow);
             let seconds = timePassed.getSeconds();
             timerHolder.innerText = ((seconds < 10) ? "0" : "") + seconds;
-            // timerHolder.style.animationPlayState = "running";
-            timerHolder.style.animation = "tick ease infinite normal 0.99s";
+            // timerHolder.style.animation = "tick ease infinite normal 0.99s";
             if (seconds === 0) {
                 self.stop();
-                timerHolder.style.animation = "none";
+                // timerHolder.style.animation = "none";
             }
         }, 990, self);
     };
@@ -118,7 +117,7 @@ function Timer() {
     this.reset = function () {
         this.stop();
         timerHolder.innerText = "30";
-        timerHolder.style.animation = "none";
+        // timerHolder.style.animation = "none";
     };
 }
 
