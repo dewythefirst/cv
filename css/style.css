@@ -39,6 +39,11 @@ a {
   justify-content: center;
   align-items: center;
 }
+.main-wrapper .nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .main-wrapper .nav-container .logo {
   font-size: 8rem;
   cursor: default;
@@ -57,17 +62,19 @@ a {
   transition: 0.2s;
 }
 .main-wrapper .nav-container .nav .links a:hover {
-  color: blue;
+  color: crimson;
 }
 .main-wrapper .nav-container .nav .works-holder {
   height: 0px;
   overflow: hidden;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 }
 .main-wrapper .nav-container .nav .works-holder a {
   transition: 0.2s;
+  margin: 0 10px;
 }
 .main-wrapper .nav-container .nav .works-holder a:hover {
   color: blue;

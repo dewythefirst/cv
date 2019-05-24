@@ -41,6 +41,9 @@ a {
   align-items: center;
 
   .nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .logo {
       font-size: 8rem;
       cursor: default;
@@ -59,7 +62,7 @@ a {
           transition: 0.2s;
 
           &:hover {
-            color: blue;
+            color: crimson;
           }
         }
       }
@@ -68,11 +71,13 @@ a {
         height: 0px;
         overflow: hidden;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
 
         a {
           transition: 0.2s;
+          margin: 0 10px;
 
           &:hover {
             color: blue;
