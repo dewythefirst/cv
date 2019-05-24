@@ -23,9 +23,8 @@ a {
   display: flex;
   flex-wrap: wrap;
 }
-.main-wrapper .boxes-holder .new-line {
-  width: 100%;
-  height: 0;
+.main-wrapper .boxes-holder div {
+  transition: 1s;
 }
 
 /*# sourceMappingURL=style.css.map */
