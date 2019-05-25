@@ -24,7 +24,7 @@ a {
   flex-wrap: wrap;
 }
 .main-wrapper .boxes-holder div {
-  transition: 1s;
+  transition: 0.2s;
 }
 
 /*# sourceMappingURL=style.css.map */
