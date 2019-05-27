@@ -31,12 +31,13 @@ function generateBoxes() {
 }
 
 generateBoxes();
+let colors = ["#5f9bc3", "#5589ca", "#ff4842", "#ff9242", "#fff342", "#fa80c8", "#ff3150", "#a7ea31", "#95dcff", "#f4fdaf", "#fdf76a", "#ed2b2c", "#f27630", "#f9d84b", "#31a06b", "#2b55f7"];
 
 function colorBoxes() {
     let boxes = Array.from(boxesHolder.querySelectorAll("div"));
     for (var i = 0; i < boxes.length; i++) {
-        // console.log(boxes[i]);
-        boxes[i].style.backgroundColor = "rgb(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ")";
+        boxes[i].style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))];
+        // boxes[i].style.backgroundColor = "rgb(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ")";
     }
 }
 
