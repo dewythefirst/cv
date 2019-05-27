@@ -16,9 +16,7 @@ function generateBoxes() {
             let divEl = document.createElement("div");
             divEl.style.width = boxesSize + "px";
             divEl.style.height = boxesSize + "px";
-            // setTimeout(function () {
             boxesHolder.appendChild(divEl);
-            // });
         }
         // setTimeout(function () {
         //     let divEl = document.createElement("div");
