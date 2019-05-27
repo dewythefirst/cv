@@ -24,7 +24,7 @@ function generateBoxes() {
         //     boxesHolder.appendChild(divEl);
         // });
     }
-    intervalColor = setInterval(colorBoxes, 200);
+    intervalColor = setInterval(colorBoxes, 100);
     ready = true;
 }
 
