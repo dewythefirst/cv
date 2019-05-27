@@ -1,23 +1,51 @@
-document.querySelector(".links a[name='portfolio']").addEventListener("click", portfolioHolder);
+let hideElements = Array.from(document.querySelectorAll("[data-hide]"));
 
-function portfolioHolder(e) {
-    e.preventDefault();
-    let holder = document.querySelector(".works-holder");
-    changeHeight(holder, 30, 500)
+let defaultHeights = {};
+
+function initializeHide() {
+    console.log(hideElements);
+    for (var i = 0; i < hideElements.length; i++) {
+        defaultHeights[i] = {};
+        defaultHeights[i]['element'] = hideElements[i];
+        let attr = hideElements[i].getAttribute("data-hide");
+        let element = document.querySelector("[data-name='" + attr + "']");
+        if (element) {
+            defaultHeights[i]['toggleElement'] = element;
+            defaultHeights[i]['height'] = element.offsetHeight;
+            element.style.height = "0px";
+            element.style.visibility = "visible";
+            hideElements[i].removeAttribute("data-hide");
+            hideElements[i].addEventListener("click", toggleSlide);
+        } else throw "Unknown error";
+    }
+    // console.log(defaultHeights);
 }
 
-function changeHeight(element, to, duration) {
-    if (duration <= 0) return;
-    // console.log(element.offsetHeight, to);
-    if (element.offsetHeight === to)
-        to = 0;
-    var difference = to - element.offsetHeight;
+window.onload = function () {
+    initializeHide();
+};
+
+let ready = true;
+
+function toggleSlide(event, to, duration = 500) {
+    let clickedElement = event.target, elementToChange; // на что нажал
+    for (var key in defaultHeights) { // проходит по всем элементам в объекте
+        if (defaultHeights[key]['element'] == clickedElement) { // если в ключе этот элемент
+            if (to == null) // если не указано
+                to = defaultHeights[key]['height']; // ставит дефолтную высоту
+            elementToChange = defaultHeights[key]['toggleElement']; // элемент который нужно менять
+        }
+    }
+    if (elementToChange.offsetHeight === to)
+        to = 0; // если высота такая же - скрыть
+    var difference = to - elementToChange.offsetHeight;
     var perTick = difference / duration * 10;
-    // console.log(difference, perTick, duration);
     setTimeout(function () {
-        element.style.height = element.offsetHeight + perTick + "px";
-        if (element.offsetHeight === to) return;
-        changeHeight(element, to, duration - 10);
+        elementToChange.style.height = elementToChange.offsetHeight + perTick + "px";
+        if (elementToChange.offsetHeight === to) {
+            return;
+        }
+        toggleSlide(event, to, duration - 10);
     }, 10);
 }
 
