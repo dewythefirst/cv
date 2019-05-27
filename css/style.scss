@@ -68,7 +68,7 @@ a {
       }
 
       .works-holder {
-        height: 0px;
+        visibility: hidden;
         overflow: hidden;
         display: flex;
         justify-content: space-around;

@@ -65,7 +65,7 @@ a {
   color: crimson;
 }
 .main-wrapper .nav-container .nav .works-holder {
-  height: 0px;
+  visibility: hidden;
   overflow: hidden;
   display: flex;
   justify-content: space-around;
