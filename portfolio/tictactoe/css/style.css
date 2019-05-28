@@ -32,6 +32,11 @@ header {
 header .logo {
   font-size: 3rem;
 }
+@media only screen and (max-width: 500px) {
+  header .logo {
+    font-size: 2rem;
+  }
+}
 
 .main-wrapper {
   display: flex;
@@ -64,6 +69,12 @@ header .logo {
   -khtml-user-select: none;
   user-select: none;
 }
+@media only screen and (max-width: 500px) {
+  .main-wrapper .toe-wrapper .game-space .row .cell {
+    width: 100px;
+    height: 100px;
+  }
+}
 .main-wrapper .toe-wrapper .game-space .row .cell:hover {
   background-color: lightgray;
 }
@@ -79,6 +90,11 @@ header .logo {
   text-transform: uppercase;
   cursor: default;
   font-family: "Raleway", sans-serif;
+}
+@media only screen and (max-width: 500px) {
+  .main-wrapper .toe-wrapper .game-space .row .cell.open {
+    font-size: 5rem;
+  }
 }
 .main-wrapper .toe-wrapper .game-space .row .cell.won {
   background-color: lightgreen;
@@ -103,6 +119,11 @@ header .logo {
   cursor: pointer;
   text-shadow: 2px 2px 10px gray;
   text-transform: uppercase;
+}
+@media only screen and (max-width: 500px) {
+  .main-wrapper .toe-wrapper .game-space .cover span {
+    font-size: 2rem;
+  }
 }
 .main-wrapper .toe-wrapper .under-game {
   margin-top: 20px;

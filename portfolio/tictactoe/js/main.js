@@ -83,9 +83,6 @@ function Game() {
     };
 
     let checkWin = function () {
-        if (moveCounter === 9) {
-            endGame(1); // draw
-        }
         let winLines = [
             ["0", "1", "2"],
             ["3", "4", "5"],
@@ -133,7 +130,9 @@ function Game() {
                 }
             }
         }
-        changeTurn();
+        if (moveCounter === 9) {
+            endGame(1); // draw
+        } else changeTurn();
     };
     let endGame = function (isDraw, player) {
         if (isDraw) {
