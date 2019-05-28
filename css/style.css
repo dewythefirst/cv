@@ -31,7 +31,7 @@ a {
 .header .passed-time {
   animation: tick ease infinite normal 1s;
   animation-play-state: paused;
-  min-height: 25px;
+  height: 25px;
 }
 
 .main-wrapper {
