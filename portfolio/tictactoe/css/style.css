@@ -32,7 +32,7 @@ header {
 header .logo {
   font-size: 3rem;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 375px) {
   header .logo {
     font-size: 2rem;
   }
@@ -69,7 +69,13 @@ header .logo {
   -khtml-user-select: none;
   user-select: none;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 320px) {
+  .main-wrapper .toe-wrapper .game-space .row .cell {
+    width: 90px;
+    height: 90px;
+  }
+}
+@media only screen and (min-width: 321px) and (max-width: 425px) {
   .main-wrapper .toe-wrapper .game-space .row .cell {
     width: 100px;
     height: 100px;
@@ -91,7 +97,7 @@ header .logo {
   cursor: default;
   font-family: "Raleway", sans-serif;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 320px) {
   .main-wrapper .toe-wrapper .game-space .row .cell.open {
     font-size: 5rem;
   }
@@ -120,7 +126,7 @@ header .logo {
   text-shadow: 2px 2px 10px gray;
   text-transform: uppercase;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 320px) {
   .main-wrapper .toe-wrapper .game-space .cover span {
     font-size: 2rem;
   }
@@ -135,11 +141,21 @@ header .logo {
   font-weight: bold;
   font-size: 1.5rem;
 }
+@media only screen and (max-width: 320px) {
+  .main-wrapper .toe-wrapper .under-game .timer {
+    font-size: 1.2rem;
+  }
+}
 .main-wrapper .toe-wrapper .under-game .player {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.3rem;
   border-bottom: 2px solid transparent;
+}
+@media only screen and (max-width: 320px) {
+  .main-wrapper .toe-wrapper .under-game .player {
+    font-size: 1.2rem;
+  }
 }
 .main-wrapper .toe-wrapper .under-game .player[data-number="1"] {
   color: crimson;
