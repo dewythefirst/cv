@@ -121,12 +121,14 @@ function Game() {
                             xCellsArray[x].classList.add("won");
                         }
                         endGame(0, 0);
+                        return;
                     }
                     else {
                         for (var o = 0; o < oCellsArray.length; o++) {
                             oCellsArray[o].classList.add("won");
                         }
                         endGame(0, 1);
+                        return;
                     }
                 }
             }
