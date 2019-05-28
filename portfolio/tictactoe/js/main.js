@@ -23,21 +23,21 @@ function Game() {
         let cover = document.querySelector(".cover");
         if (!isRunning) {
             cover.classList.remove("active");
-            isRunning = !isRunning;
+            isRunning = true;
         } else {
             cover.classList.add("active");
-            isRunning = !isRunning;
+            isRunning = false;
             throw "Game is already running";
         }
-        let cells = Array.from(gameSpace.querySelectorAll(".cell"));
+        let cells = Array.from(gameSpace.querySelectorAll(".game-space .cell"));
         for (var i = 0; i < cells.length; i++) {
             cells[i].innerText = "";
-            cells[i].classList.remove("open");
+            cells[i].classList.remove("open", "won");
         }
         moveCounter = 0;
-        this.changeTurn();
+        changeTurn();
     };
-    this.increaseCounter = function () {
+    let increaseCounter = function () {
         moveCounter++;
     };
     this.makeMove = function (e) {
@@ -50,18 +50,15 @@ function Game() {
             element.innerText = "x";
         }
         element.classList.add("open");
-        game.increaseCounter();
-        if (moveCounter === 9) {
-            cover.querySelector("span").innerHTML = "DRAW.<br>CLICK TO START";
-            cover.classList.add("active");
-            isRunning = !isRunning;
-            timer.stop();
-            return;
+        increaseCounter();
+        if (moveCounter >= 5) {
+            checkWin();
+        } else {
+            changeTurn();
         }
-        this.changeTurn();
     };
     let playerTurn = null;
-    this.changeTurn = function () {
+    let changeTurn = function () {
         if (playerTurn == null) {
             playerTurn = Math.round(Math.random());
             makePlayerActive(playerTurn);
@@ -70,6 +67,7 @@ function Game() {
         playerTurn = !playerTurn;
         makePlayerActive(playerTurn);
     };
+
     let makePlayerActive = function (player) {
         let player1 = document.querySelector(".player[data-number='1']");
         let player2 = document.querySelector(".player[data-number='2']");
@@ -82,6 +80,72 @@ function Game() {
         }
         timer.reset();
         timer.start();
+    };
+
+    let checkWin = function () {
+        if (moveCounter === 9) {
+            endGame(1); // draw
+        }
+        let winLines = [
+            ["0", "1", "2"],
+            ["3", "4", "5"],
+            ["6", "7", "8"],
+            ["0", "3", "6"],
+            ["1", "4", "7"],
+            ["2", "5", "8"],
+            ["0", "4", "8"],
+            ["2", "4", "6"],
+        ];
+        let allCells = Array.from(document.querySelectorAll(".game-space .cell"));
+        let counterX, counterO;
+        let xCellsArray = [], oCellsArray = [];
+        for (var i = 0; i < winLines.length; i++) {
+            counterX = 0;
+            counterO = 0;
+            xCellsArray = [];
+            oCellsArray = [];
+            for (var k = 0; k < winLines[i].length; k++) {
+                let cellNumber = +winLines[i][k];
+                // console.log(allCells[cellNumber].innerText);
+                if (allCells[cellNumber].innerText === "X") {
+                    counterX++;
+                    xCellsArray.push(allCells[cellNumber]);
+                }
+                if (allCells[cellNumber].innerText === "O") {
+                    counterO++;
+                    oCellsArray.push(allCells[cellNumber]);
+                }
+                if (k === 2 && (counterX === 3 || counterO === 3)) {
+                    if (counterX === 3) {
+                        for (var x = 0; x < xCellsArray.length; x++) {
+                            xCellsArray[x].classList.add("won");
+                        }
+                        endGame(0, 0);
+                    }
+                    else {
+                        for (var o = 0; o < oCellsArray.length; o++) {
+                            oCellsArray[o].classList.add("won");
+                        }
+                        endGame(0, 1);
+                    }
+                }
+            }
+        }
+        changeTurn();
+    };
+    let endGame = function (isDraw, player) {
+        if (isDraw) {
+            cover.querySelector("span").innerHTML = "Draw!<br>Click to start";
+        } else {
+            if (player === 0) {
+                cover.querySelector("span").innerHTML = "Player 1 won!<br>Click to start";
+            } else {
+                cover.querySelector("span").innerHTML = "Player 2 won!<br>Click to start";
+            }
+        }
+        cover.classList.add("active");
+        isRunning = false;
+        timer.stop();
     };
 }
 
