@@ -73,8 +73,6 @@ header .user-wrapper .user-name {
   border-radius: 5px;
 }
 .main-wrapper .calendars-wrapper .calendar {
-  width: 200px;
-  height: 200px;
   border-radius: 10px;
   background-color: #fff;
   display: flex;
@@ -95,13 +93,14 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper {
   display: flex;
-  width: 95%;
+  padding: 5px;
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
+  margin: 0 2px;
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .week-day {
   display: flex;
@@ -119,7 +118,7 @@ header .user-wrapper .user-name {
   align-items: center;
   width: 25px;
   height: 25px;
-  margin: 5px 0;
+  margin: 2px 0;
   border-radius: 5px;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -144,6 +143,7 @@ header .user-wrapper .user-name {
   padding: 10px;
   background-color: #eeeeee;
   border: none;
+  font-family: "Raleway", sans-serif;
 }
 .main-wrapper .tasks-wrapper .tasks {
   display: flex;
