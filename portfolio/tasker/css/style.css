@@ -20,7 +20,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #404040;
 }
 
 header {
@@ -64,13 +63,14 @@ header .user-wrapper .user-name {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  padding: 20px 50px;
 }
 .main-wrapper .calendars-wrapper {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 20px;
+  border-radius: 5px;
 }
 .main-wrapper .calendars-wrapper .calendar {
   width: 200px;
@@ -88,6 +88,7 @@ header .user-wrapper .user-name {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
+  cursor: default;
   font-weight: bold;
   padding: 2px;
   border-bottom: 1px solid lightgray;
@@ -126,13 +127,12 @@ header .user-wrapper .user-name {
   transition: 0.2s;
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date:hover {
-  box-shadow: 0 0 5px #404040;
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
 }
 .main-wrapper .tasks-wrapper {
   margin-top: 40px;
   border-radius: 5px;
   padding: 20px;
-  background-color: #fff;
 }
 .main-wrapper .tasks-wrapper .add-task {
   display: flex;
@@ -142,7 +142,7 @@ header .user-wrapper .user-name {
   width: 100%;
   border-radius: 5px;
   padding: 10px;
-  background-color: lightgray;
+  background-color: #eeeeee;
   border: none;
 }
 .main-wrapper .tasks-wrapper .tasks {
@@ -168,7 +168,8 @@ header .user-wrapper .user-name {
   border: 1px solid lightgray;
 }
 .main-wrapper .tasks-wrapper .tasks .task.active {
-  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   text-shadow: 1px 1px 3px black;
 }
@@ -176,7 +177,6 @@ header .user-wrapper .user-name {
   margin-top: 40px;
   border-radius: 5px;
   padding: 20px;
-  background-color: #fff;
 }
 .main-wrapper .history-wrapper .history {
   display: flex;
@@ -190,14 +190,24 @@ header .user-wrapper .user-name {
   font-size: 1.3rem;
   color: black;
   text-transform: uppercase;
-  margin: 10px 0;
+  margin-bottom: 10px;
 }
 .main-wrapper .history-wrapper .history .history_entry {
   width: 100%;
-  border-radius: 0 10px 10px 0;
+  border-radius: 5px;
   padding: 5px;
   border: 1px solid lightgray;
-  border-left: 5px solid purple;
+  padding: 10px;
+}
+.main-wrapper .history-wrapper .history .history_entry.done {
+  background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+
+.shadow, .main-wrapper .calendars-wrapper .calendar, .main-wrapper .tasks-wrapper, .main-wrapper .history-wrapper {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
 /*# sourceMappingURL=style.css.map */
