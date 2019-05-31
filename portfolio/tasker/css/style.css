@@ -1,0 +1,203 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #404040;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 0 0 7px 7px;
+  padding: 5px 20px;
+  background: linear-gradient(45deg, #c823be 0%, #ff8c2d 100%);
+}
+header .logo {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+}
+header .user-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+header .user-wrapper .user-img {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+header .user-wrapper .user-img img {
+  max-width: 100%;
+  object-fit: cover;
+}
+header .user-wrapper .user-name {
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px black;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+.main-wrapper .calendars-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.main-wrapper .calendars-wrapper .calendar {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+}
+.main-wrapper .calendars-wrapper .calendar .month-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 2px;
+  border-bottom: 1px solid lightgray;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper {
+  display: flex;
+  width: 95%;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .week-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: gray;
+  cursor: default;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date {
+  background: linear-gradient(45deg, #c823be 0%, #ff8c2d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date:hover {
+  box-shadow: 0 0 5px #404040;
+}
+.main-wrapper .tasks-wrapper {
+  margin-top: 40px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+}
+.main-wrapper .tasks-wrapper .add-task {
+  display: flex;
+  justify-content: center;
+}
+.main-wrapper .tasks-wrapper .add-task input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: lightgray;
+  border: none;
+}
+.main-wrapper .tasks-wrapper .tasks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main-wrapper .tasks-wrapper .tasks .title {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: black;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.main-wrapper .tasks-wrapper .tasks .task {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+.main-wrapper .tasks-wrapper .tasks .task.active {
+  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+.main-wrapper .history-wrapper {
+  margin-top: 40px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+}
+.main-wrapper .history-wrapper .history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main-wrapper .history-wrapper .history .title {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: black;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.main-wrapper .history-wrapper .history .history_entry {
+  width: 100%;
+  border-radius: 0 10px 10px 0;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-left: 5px solid purple;
+}
+
+/*# sourceMappingURL=style.css.map */
