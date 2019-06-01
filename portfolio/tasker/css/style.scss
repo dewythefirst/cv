@@ -76,7 +76,8 @@ header {
     display: flex;
     //justify-content: space-evenly;
     //flex-wrap: nowrap;
-    overflow: auto;
+    overflow-x: auto;
+    height: auto;
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
