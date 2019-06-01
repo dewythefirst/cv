@@ -70,6 +70,9 @@ header {
   flex-direction: column;
   width: 100%;
   padding: 20px 50px;
+  @media only screen and (max-width: 425px) {
+    padding: 20px;
+  }
 
   .calendars-wrapper {
     position: relative;
@@ -96,6 +99,12 @@ header {
       &:first-child {
         margin-left: 0;
       }
+      @media only screen and (max-width: 425px) {
+        //margin: 0 25px;
+        &:first-child {
+          //margin-left: 25px;
+        }
+      }
 
       .month-name {
         width: 100%;
@@ -119,6 +128,9 @@ header {
           align-items: center;
           width: 90%;
           margin: 0 2px;
+          @media only screen and (max-width: 375px) {
+            margin: 0 3px;
+          }
 
           .week-day {
             display: flex;
@@ -138,6 +150,12 @@ header {
             width: 25px;
             height: 25px;
             margin: 2px 0;
+            @media only screen and (max-width: 425px) {
+              width: 35px;
+              height: 35px;
+              margin: 3px 0;
+              font-size: 1.1em;
+            }
             border-radius: 5px;
             color: white;
             font-family: "Poppins", sans-serif;
@@ -241,7 +259,6 @@ header {
       .history_entry {
         width: 100%;
         border-radius: 5px;
-        padding: 5px;
         border: 1px solid lightgray;
         padding: 10px;
 
