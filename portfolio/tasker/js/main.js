@@ -11,19 +11,19 @@ function initializeCalendars() {
         monthName.classList.add("month-name");
         let dateMonth = new Date();
         let newMonth = dateMonth.getMonth() + i;
-        if (newMonth < 0) {
-            newMonth += 12;
-            dateMonth.setFullYear(dateMonth.getFullYear() - 1);
-        }
-        dateMonth.setMonth(newMonth);
+        // if (newMonth < 0) {
+        //     newMonth += 12;
+        //     dateMonth.setFullYear(dateMonth.getFullYear() - 1);
+        // }
+        dateMonth.setMonth(newMonth, 1);
 
         monthName.innerText = monthNameEn[dateMonth.getMonth()];
         calendarDiv.appendChild(monthName);
         let datesWrapper = document.createElement("div");
         datesWrapper.classList.add("dates-wrapper");
         for (var k = 0; k < 7; k++) {
-            // let weekDaysEn = ["M", "T", "W", "T", "F", "S", "S"];
-            let weekDaysEn = ["S", "M", "T", "W", "T", "F", "S"];
+            let weekDaysEn = ["M", "T", "W", "T", "F", "S", "S"];
+            // let weekDaysEn = ["S", "M", "T", "W", "T", "F", "S"];
             let colDiv = document.createElement("div");
             colDiv.classList.add("col");
             let weekDay = document.createElement("span");
@@ -36,7 +36,7 @@ function initializeCalendars() {
                 let dayInMs = 86400000;
                 let currentDate = new Date(dateMonth.getTime() + dayInMs * 7 * d);
                 let currentDateDayNumber = currentDate.getDay();
-                if (currentDateDayNumber == 0)
+                if (currentDateDayNumber === 0)
                     currentDateDayNumber = 7;
                 let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs).getDate();
                 dayNumber = Number(dayNumber);
