@@ -72,9 +72,12 @@ header {
   padding: 20px 50px;
 
   .calendars-wrapper {
+    position: relative;
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    //justify-content: space-evenly;
+    //flex-wrap: nowrap;
+    overflow: auto;
+    padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
 
@@ -136,6 +139,10 @@ header {
 
             &:hover {
               box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
+            }
+            &.extra {
+              //background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+              background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
             }
           }
         }

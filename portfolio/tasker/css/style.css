@@ -66,9 +66,10 @@ header .user-wrapper .user-name {
   padding: 20px 50px;
 }
 .main-wrapper .calendars-wrapper {
+  position: relative;
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  overflow: auto;
+  padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
 }
@@ -127,6 +128,9 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date:hover {
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date.extra {
+  background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
 }
 .main-wrapper .tasks-wrapper {
   margin-top: 40px;
