@@ -152,6 +152,11 @@ header {
               //background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
               background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
             }
+            &.today {
+              background: white;
+              color: crimson;
+              border: 2px solid crimson;
+            }
           }
         }
       }
@@ -173,6 +178,7 @@ header {
         border-radius: 5px;
         padding: 10px;
         background-color: #eeeeee;
+        font-size: 1em;
         border: none;
         font-family: "Raleway", sans-serif;
       }
