@@ -2,7 +2,7 @@ let calendarsWrapper = document.querySelector(".calendars-wrapper");
 
 function initializeCalendars() {
     calendarsWrapper.innerHTML = "";
-    let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "October", "December"];
+    let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     for (var i = 0; i < 12; i++) {
         let weeksQ = 5;
         let calendarDiv = document.createElement("div");
@@ -22,7 +22,8 @@ function initializeCalendars() {
         let datesWrapper = document.createElement("div");
         datesWrapper.classList.add("dates-wrapper");
         for (var k = 0; k < 7; k++) {
-            let weekDaysEn = ["M", "T", "W", "T", "F", "S", "S"];
+            // let weekDaysEn = ["M", "T", "W", "T", "F", "S", "S"];
+            let weekDaysEn = ["S", "M", "T", "W", "T", "F", "S"];
             let colDiv = document.createElement("div");
             colDiv.classList.add("col");
             let weekDay = document.createElement("span");
@@ -34,7 +35,10 @@ function initializeCalendars() {
                 dateDiv.classList.add("date");
                 let dayInMs = 86400000;
                 let currentDate = new Date(dateMonth.getTime() + dayInMs * 7 * d);
-                let dayNumber = new Date(currentDate.getTime() - (currentDate.getDay() - k - 1) * dayInMs).getDate();
+                let currentDateDayNumber = currentDate.getDay();
+                if (currentDateDayNumber == 0)
+                    currentDateDayNumber = 7;
+                let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs).getDate();
                 dayNumber = Number(dayNumber);
                 if (new Date().getDate() == dayNumber) {
                     if (currentDate.getMonth() == new Date().getMonth()) {
@@ -43,7 +47,7 @@ function initializeCalendars() {
                         }
                     }
                 }
-                if (d === 0 && dayNumber > 7) {
+                if (d === 0 && dayNumber > 8) {
                     dateDiv.classList.add("extra"); // лишний (из другого месяца)
                 }
                 if ((d >= 4 && dayNumber < 14)) {
@@ -51,6 +55,10 @@ function initializeCalendars() {
                 }
                 dateDiv.innerText = "" + dayNumber;
                 colDiv.appendChild(dateDiv);
+                // if (dateMonth.getMonth() == 8) {
+                //     console.log(currentDate);
+                //     console.log(dateDiv);
+                // }
                 if (d === 4 && k === 0 && (dayNumber + 7 <= lastDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()))) { // если не хватает строк для окончания месяца- добавить
                     weeksQ++;
                 }
