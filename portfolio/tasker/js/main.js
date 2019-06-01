@@ -1,6 +1,7 @@
 let calendarsWrapper = document.querySelector(".calendars-wrapper");
 
 function initializeCalendars() {
+    calendarsWrapper.innerHTML = "";
     let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "October", "December"];
     for (var i = 0; i < 12; i++) {
         let weeksQ = 5;
@@ -52,6 +53,7 @@ function initializeCalendars() {
         calendarDiv.appendChild(datesWrapper);
         calendarsWrapper.appendChild(calendarDiv);
     }
+    calendarsWrapper.innerHTML = calendarsWrapper.innerHTML + "<div style='min-width: 1px; height: 1px;'></div>";
 }
 
 initializeCalendars();

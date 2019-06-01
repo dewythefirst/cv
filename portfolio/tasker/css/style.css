@@ -84,6 +84,9 @@ header .user-wrapper .user-name {
   margin: 0 20px;
   min-height: 240px;
 }
+.main-wrapper .calendars-wrapper .calendar:first-child {
+  margin-left: 0;
+}
 .main-wrapper .calendars-wrapper .calendar .month-name {
   width: 100%;
   display: flex;
