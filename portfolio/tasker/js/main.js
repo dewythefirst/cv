@@ -34,7 +34,7 @@ function initializeCalendars() {
                 dateDiv.classList.add("date");
                 let dayInMs = 86400000;
                 let currentDate = new Date(dateMonth.getTime() + dayInMs * 7 * d);
-                let dayNumber = new Date(currentDate.getTime() - (currentDate.getDay() - k) * dayInMs).getDate();
+                let dayNumber = new Date(currentDate.getTime() - (currentDate.getDay() - k - 1) * dayInMs).getDate();
                 dayNumber = Number(dayNumber);
                 if (d === 0 && dayNumber > 7) {
                     dateDiv.classList.add("extra"); // лишний (из другого месяца)
