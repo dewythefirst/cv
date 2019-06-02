@@ -112,9 +112,12 @@ header {
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
+        @media only screen and (max-width: 425px) {
+          font-size: 1.3rem;
+        }
         cursor: default;
         font-weight: bold;
-        padding: 2px;
+        padding: 3px;
         border-bottom: 1px solid lightgray;
       }
 
@@ -180,7 +183,18 @@ header {
       }
     }
   }
-
+.arrows {
+  display: none;
+  @media only screen and (max-width: 425px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+}
   .tasks-wrapper {
     margin-top: 40px;
     border-radius: 5px;

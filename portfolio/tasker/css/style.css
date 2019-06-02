@@ -98,8 +98,13 @@ header .user-wrapper .user-name {
   font-size: 1.2rem;
   cursor: default;
   font-weight: bold;
-  padding: 2px;
+  padding: 3px;
   border-bottom: 1px solid lightgray;
+}
+@media only screen and (max-width: 425px) {
+  .main-wrapper .calendars-wrapper .calendar .month-name {
+    font-size: 1.3rem;
+  }
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper {
   display: flex;
@@ -158,6 +163,20 @@ header .user-wrapper .user-name {
   background: white;
   color: crimson;
   border: 2px solid crimson;
+}
+.main-wrapper .arrows {
+  display: none;
+}
+@media only screen and (max-width: 425px) {
+  .main-wrapper .arrows {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.main-wrapper .arrows img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 .main-wrapper .tasks-wrapper {
   margin-top: 40px;
