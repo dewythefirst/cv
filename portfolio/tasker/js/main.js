@@ -59,10 +59,6 @@ function initializeCalendars() {
                 }
                 dateDiv.innerText = "" + dayNumber;
                 colDiv.appendChild(dateDiv);
-                // if (dateMonth.getMonth() == 8) {
-                //     console.log(currentDate);
-                //     console.log(dateDiv);
-                // }
                 if (d === 4 && k === 0 && (dayNumber + 7 <= lastDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()))) { // если не хватает строк для окончания месяца- добавить
                     weeksQ++;
                 }
@@ -104,7 +100,6 @@ function slideCalendars(side) {
         scrollTo(calendarsWrapper, leftValues[currentMonthNumber]);*/
 }
 
-
 function scrollTo(elementToChange, to, duration = 100) {
     var difference = to - elementToChange.scrollLeft;
     var perTick = difference / duration * 10;
@@ -115,4 +110,15 @@ function scrollTo(elementToChange, to, duration = 100) {
         }
         scrollTo(elementToChange, to, duration - 10);
     }, 10);
+}
+
+let addBtn = document.querySelector(".add-task .btn");
+addBtn.addEventListener("click", addTask);
+
+function addTask() {
+    let taskInput = document.querySelector(".add-task input");
+    if (taskInput.value !== "") {
+
+    }
+    taskInput.value = "";
 }

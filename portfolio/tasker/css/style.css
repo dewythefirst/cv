@@ -193,15 +193,34 @@ header .user-wrapper .user-name {
 .main-wrapper .tasks-wrapper .add-task {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .main-wrapper .tasks-wrapper .add-task input {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   padding: 10px;
+  height: 40px;
   background-color: #eeeeee;
   font-size: 1em;
-  border: none;
   font-family: "Raleway", sans-serif;
+  border: 1px solid lightgray;
+  outline: none;
+}
+.main-wrapper .tasks-wrapper .add-task .btn {
+  border-radius: 0 5px 5px 0;
+  height: 40px;
+  padding: 10px;
+  background-image: linear-gradient(120deg, #c3fc79 0%, #96e6e0 100%);
+  border: 1px solid lightgray;
+  border-left: none;
+  user-select: none;
+  color: white;
+  text-shadow: 0 0 5px black;
+  cursor: pointer;
+}
+.main-wrapper .tasks-wrapper .add-task .btn:hover {
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .main-wrapper .tasks-wrapper .tasks {
   display: flex;
@@ -219,17 +238,46 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .tasks-wrapper .tasks .task {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid lightgray;
 }
-.main-wrapper .tasks-wrapper .tasks .task.active {
+.main-wrapper .tasks-wrapper .tasks .task .task-date {
+  margin-right: auto;
+  color: lightgray;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper {
+  display: flex;
+  align-items: center;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-text {
+  width: 100%;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-text.active {
   background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   text-shadow: 1px 1px 3px black;
+  border-radius: 5px;
+  padding: 8px;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings {
+  margin-left: 10px;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div {
+  width: 20px;
+  height: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div.delete {
+  background: url("../images/delete.png") center no-repeat;
+  background-size: contain;
+}
+.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div.delete:hover {
+  background: url("../images/delete_red.png") center no-repeat;
+  background-size: contain;
 }
 .main-wrapper .history-wrapper {
   margin-top: 40px;
