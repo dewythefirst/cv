@@ -236,25 +236,28 @@ header .user-wrapper .user-name {
   text-transform: uppercase;
   margin: 10px 0;
 }
-.main-wrapper .tasks-wrapper .tasks .task {
+.main-wrapper .tasks-wrapper .tasks .under-title {
+  width: 100%;
+}
+.main-wrapper .tasks-wrapper .tasks .under-title .task {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.main-wrapper .tasks-wrapper .tasks .task:not(:first-child) {
+.main-wrapper .tasks-wrapper .tasks .under-title .task:not(:first-child) {
   margin-top: 10px;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-date {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-date {
   margin-right: auto;
   color: lightgray;
   font-family: "Poppins", sans-serif;
   font-size: 0.8em;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper {
   display: flex;
   align-items: center;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-text {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-text {
   width: 100%;
   background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -263,20 +266,20 @@ header .user-wrapper .user-name {
   border-radius: 5px;
   padding: 8px;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-settings {
   margin-left: 10px;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-settings div {
   width: 20px;
   height: 20px;
   transition: 0.3s;
   cursor: pointer;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div.delete {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-settings div.delete {
   background: url("../images/delete.png") center no-repeat;
   background-size: contain;
 }
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div.delete:hover {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-settings div.delete:hover {
   background: url("../images/delete_red.png") center no-repeat;
   background-size: contain;
 }

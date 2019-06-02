@@ -269,49 +269,55 @@ header {
         margin: 10px 0;
       }
 
-      .task {
-        display: flex;
-        flex-direction: column;
+      .under-title {
         width: 100%;
-        &:not(:first-child) {
-          margin-top: 10px;
-        }
 
-        .task-date {
-          margin-right: auto;
-          color: lightgray;
-          font-family: 'Poppins', sans-serif;
-          font-size: 0.8em;
-        }
-
-        .task-wrapper {
+        .task {
           display: flex;
-          align-items: center;
+          flex-direction: column;
+          width: 100%;
 
-          .task-text {
-            width: 100%;
+          &:not(:first-child) {
+            margin-top: 10px;
+          }
+
+          .task-date {
+            margin-right: auto;
+            color: lightgray;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8em;
+          }
+
+          .task-wrapper {
+            display: flex;
+            align-items: center;
+
+            .task-text {
+              width: 100%;
               background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
               color: white;
               text-shadow: 1px 1px 3px black;
               border-radius: 5px;
               padding: 8px;
-          }
+            }
 
-          .task-settings {
-            margin-left: 10px;
-            div {
-              width: 20px;
-              height: 20px;
-              transition: 0.3s;
-              cursor: pointer;
+            .task-settings {
+              margin-left: 10px;
 
-              &.delete {
-                background: url("../images/delete.png") center no-repeat;
-                background-size: contain;
+              div {
+                width: 20px;
+                height: 20px;
+                transition: 0.3s;
+                cursor: pointer;
 
-                &:hover {
-                  background: url("../images/delete_red.png") center no-repeat;
+                &.delete {
+                  background: url("../images/delete.png") center no-repeat;
                   background-size: contain;
+
+                  &:hover {
+                    background: url("../images/delete_red.png") center no-repeat;
+                    background-size: contain;
+                  }
                 }
               }
             }
