@@ -77,6 +77,7 @@ header .user-wrapper .user-name {
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
+  transition: 1s;
 }
 .main-wrapper .calendars-wrapper .calendar {
   border-radius: 10px;
@@ -177,6 +178,12 @@ header .user-wrapper .user-name {
   width: 30px;
   height: 30px;
   object-fit: contain;
+}
+.main-wrapper .arrows img:hover {
+  cursor: pointer;
+}
+.main-wrapper .arrows img:active {
+  transform: scale(0.8);
 }
 .main-wrapper .tasks-wrapper {
   margin-top: 40px;

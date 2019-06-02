@@ -1,4 +1,8 @@
 let calendarsWrapper = document.querySelector(".calendars-wrapper");
+let arrowLeft = document.querySelector(".arrows img[alt='left']");
+let arrowRight = document.querySelector(".arrows img[alt='right']");
+arrowLeft.addEventListener("click", slideCalendars);
+arrowRight.addEventListener("click", slideCalendars);
 
 function initializeCalendars() {
     calendarsWrapper.innerHTML = "";
@@ -76,4 +80,39 @@ initializeCalendars();
 
 function lastDayOfMonth(Year, Month) {
     return new Date((new Date(Year, Month, 1)) - 1);
+}
+
+let currentMonthNumber = 0;
+
+function slideCalendars(side) {
+    let leftValues = [];
+    let calendars = Array.from(document.querySelectorAll(".calendar"));
+    for (var i = 0; i < calendars.length; i++) {
+        leftValues[i] = calendars[i].offsetLeft - 20;
+    }
+    if (side.target === arrowLeft) {
+        if (currentMonthNumber !== 0)
+            currentMonthNumber--;
+    } else {
+        if (currentMonthNumber !== 11)
+            currentMonthNumber++;
+    }
+    calendarsWrapper.scrollLeft = leftValues[currentMonthNumber];
+    /*if (currentMonthNumber === 11) {
+        scrollTo(calendarsWrapper, leftValues[currentMonthNumber] - 30);
+    } else
+        scrollTo(calendarsWrapper, leftValues[currentMonthNumber]);*/
+}
+
+
+function scrollTo(elementToChange, to, duration = 100) {
+    var difference = to - elementToChange.scrollLeft;
+    var perTick = difference / duration * 10;
+    setTimeout(function () {
+        elementToChange.scrollLeft = elementToChange.scrollLeft + perTick;
+        if (elementToChange.scrollLeft === to) {
+            return;
+        }
+        scrollTo(elementToChange, to, duration - 10);
+    }, 10);
 }

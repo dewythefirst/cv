@@ -85,6 +85,7 @@ header {
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
+    transition: 1s;
 
     .calendar {
       border-radius: 10px;
@@ -193,6 +194,13 @@ header {
     width: 30px;
     height: 30px;
     object-fit: contain;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      transform: scale(0.8);
+    }
   }
 }
   .tasks-wrapper {
