@@ -273,6 +273,9 @@ header {
         display: flex;
         flex-direction: column;
         width: 100%;
+        &:not(:first-child) {
+          margin-top: 10px;
+        }
 
         .task-date {
           margin-right: auto;
@@ -287,13 +290,11 @@ header {
 
           .task-text {
             width: 100%;
-            &.active {
               background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
               color: white;
               text-shadow: 1px 1px 3px black;
               border-radius: 5px;
               padding: 8px;
-            }
           }
 
           .task-settings {
@@ -301,7 +302,7 @@ header {
             div {
               width: 20px;
               height: 20px;
-              transition: 0.2s;
+              transition: 0.3s;
               cursor: pointer;
 
               &.delete {

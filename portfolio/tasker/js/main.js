@@ -42,8 +42,9 @@ function initializeCalendars() {
                 let currentDateDayNumber = currentDate.getDay();
                 if (currentDateDayNumber === 0)
                     currentDateDayNumber = 7;
-                let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs).getDate();
-                dayNumber = Number(dayNumber);
+                let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs);
+                let theRealDate = dayNumber;
+                dayNumber = Number(dayNumber.getDate());
                 if (new Date().getDate() == dayNumber) {
                     if (currentDate.getMonth() == new Date().getMonth()) {
                         if (currentDate.getFullYear() == new Date().getFullYear()) {
@@ -58,6 +59,8 @@ function initializeCalendars() {
                     dateDiv.classList.add("extra"); // лишний (из другого месяца)
                 }
                 dateDiv.innerText = "" + dayNumber;
+                theRealDate = `${theRealDate.getDate()}.${theRealDate.getMonth() + 1}.${theRealDate.getFullYear()}`;
+                dateDiv.setAttribute("data-date", theRealDate);
                 colDiv.appendChild(dateDiv);
                 if (d === 4 && k === 0 && (dayNumber + 7 <= lastDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()))) { // если не хватает строк для окончания месяца- добавить
                     weeksQ++;
@@ -117,8 +120,28 @@ addBtn.addEventListener("click", addTask);
 
 function addTask() {
     let taskInput = document.querySelector(".add-task input");
+    let underTitle = document.querySelector(".under-title");
     if (taskInput.value !== "") {
-
+        let taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+        let taskDateSpan = document.createElement("span");
+        taskDateSpan.classList.add("task-date");
+        taskDateSpan.innerText = `${(new Date().getDate() < 10 ? "0" : "") + new Date().getDate()}.${(new Date().getMonth() < 10 ? "0" : "") + new Date().getMonth()}.${new Date().getFullYear()} @ ${(new Date().getHours() < 10 ? "0" : "") + new Date().getHours()}:${(new Date().getMinutes() < 10 ? "0" : "") + new Date().getMinutes()}`;
+        taskDiv.appendChild(taskDateSpan);
+        let taskWrapperDiv = document.createElement("div");
+        taskWrapperDiv.classList.add("task-wrapper");
+        let taskTextDiv = document.createElement("div");
+        taskTextDiv.classList.add("task-text");
+        taskTextDiv.innerText = taskInput.value;
+        taskWrapperDiv.appendChild(taskTextDiv);
+        let taskSettingsDiv = document.createElement("div");
+        taskSettingsDiv.classList.add("task-settings");
+        let deleteButton = document.createElement("div");
+        deleteButton.classList.add("delete");
+        taskSettingsDiv.appendChild(deleteButton);
+        taskWrapperDiv.appendChild(taskSettingsDiv);
+        taskDiv.appendChild(taskWrapperDiv);
+        underTitle.appendChild(taskDiv);
     }
     taskInput.value = "";
 }

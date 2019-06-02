@@ -241,6 +241,9 @@ header .user-wrapper .user-name {
   flex-direction: column;
   width: 100%;
 }
+.main-wrapper .tasks-wrapper .tasks .task:not(:first-child) {
+  margin-top: 10px;
+}
 .main-wrapper .tasks-wrapper .tasks .task .task-date {
   margin-right: auto;
   color: lightgray;
@@ -253,8 +256,6 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-text {
   width: 100%;
-}
-.main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-text.active {
   background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
@@ -268,7 +269,7 @@ header .user-wrapper .user-name {
 .main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div {
   width: 20px;
   height: 20px;
-  transition: 0.2s;
+  transition: 0.3s;
   cursor: pointer;
 }
 .main-wrapper .tasks-wrapper .tasks .task .task-wrapper .task-settings div.delete {
