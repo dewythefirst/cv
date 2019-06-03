@@ -45,18 +45,17 @@ function initializeCalendars() {
                 let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs);
                 let theRealDate = dayNumber;
                 dayNumber = Number(dayNumber.getDate());
-                if (new Date().getDate() == dayNumber) {
-                    if (currentDate.getMonth() == new Date().getMonth()) {
-                        if (currentDate.getFullYear() == new Date().getFullYear()) {
-                            dateDiv.classList.add("today");
-                        }
-                    }
-                }
                 if (d === 0 && dayNumber > 8) {
                     dateDiv.classList.add("extra"); // лишний (из другого месяца)
                 }
                 if ((d >= 4 && dayNumber < 14)) {
                     dateDiv.classList.add("extra"); // лишний (из другого месяца)
+                }
+                if (theRealDate.getDate() === new Date().getDate()) {
+                    if (theRealDate.getMonth() === new Date().getMonth())
+                        if (theRealDate.getFullYear() === new Date().getFullYear())
+                            if (!dateDiv.classList.contains("extra"))
+                                dateDiv.classList.add("today");
                 }
                 dateDiv.innerText = "" + dayNumber;
                 theRealDate = `${theRealDate.getDate()}.${theRealDate.getMonth() + 1}.${theRealDate.getFullYear()}`;
@@ -138,10 +137,24 @@ function addTask() {
         taskSettingsDiv.classList.add("task-settings");
         let deleteButton = document.createElement("div");
         deleteButton.classList.add("delete");
+        deleteButton.addEventListener("click", deleteTask);
         taskSettingsDiv.appendChild(deleteButton);
         taskWrapperDiv.appendChild(taskSettingsDiv);
         taskDiv.appendChild(taskWrapperDiv);
         underTitle.appendChild(taskDiv);
     }
     taskInput.value = "";
+}
+
+
+let deleteButton = document.querySelector(".task-settings .delete");
+deleteButton.addEventListener("click", deleteTask);
+
+function deleteTask(e) {
+    let element = e.target;
+    let underTitleDiv = document.querySelector(".under-title");
+    while (!element.classList.contains("task")) {
+        element = element.parentElement;
+    }
+    underTitleDiv.removeChild(element);
 }
