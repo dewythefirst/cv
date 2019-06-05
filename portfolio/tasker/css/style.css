@@ -140,6 +140,7 @@ header .user-wrapper .user-name {
   width: 25px;
   height: 25px;
   margin: 2px 0;
+  position: relative;
   border-radius: 5px;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -164,6 +165,29 @@ header .user-wrapper .user-name {
   background: white;
   color: crimson;
   border: 2px solid crimson;
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date.done {
+  background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
+}
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date .circle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: crimson;
+  color: white;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6em;
+  top: -2px;
+  right: -2px;
+}
+@media only screen and (max-width: 425px) {
+  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date .circle {
+    width: 15px;
+    height: 15px;
+  }
 }
 .main-wrapper .arrows {
   display: none;
@@ -252,10 +276,26 @@ header .user-wrapper .user-name {
   color: lightgray;
   font-family: "Poppins", sans-serif;
   font-size: 0.8em;
+  margin-bottom: 2px;
 }
 .main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper {
   display: flex;
   align-items: center;
+}
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick.gray {
+  background: url("../images/tick-gray.png") no-repeat center;
+  background-size: contain;
+}
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick.green, .main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick:hover {
+  background: url("../images/tick-green.png") no-repeat center;
+  background-size: contain;
 }
 .main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-text {
   width: 100%;

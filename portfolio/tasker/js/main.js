@@ -60,6 +60,7 @@ function initializeCalendars() {
                 dateDiv.innerText = "" + dayNumber;
                 theRealDate = `${theRealDate.getDate()}.${theRealDate.getMonth() + 1}.${theRealDate.getFullYear()}`;
                 dateDiv.setAttribute("data-date", theRealDate);
+                // dateDiv.addEventListener("click", clickOnDate);
                 colDiv.appendChild(dateDiv);
                 if (d === 4 && k === 0 && (dayNumber + 7 <= lastDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()))) { // если не хватает строк для окончания месяца- добавить
                     weeksQ++;
@@ -71,6 +72,7 @@ function initializeCalendars() {
         calendarsWrapper.appendChild(calendarDiv);
     }
     calendarsWrapper.innerHTML = calendarsWrapper.innerHTML + "<div style='min-width: 1px; height: 1px;'></div>";
+    setEventListenerForDateDiv();
 }
 
 initializeCalendars();
@@ -150,11 +152,45 @@ function addTask() {
 let deleteButton = document.querySelector(".task-settings .delete");
 deleteButton.addEventListener("click", deleteTask);
 
+// добавить парсинг всех заданий и вешание листнера на них
+
 function deleteTask(e) {
     let element = e.target;
     let underTitleDiv = document.querySelector(".under-title");
-    while (!element.classList.contains("task")) {
-        element = element.parentElement;
+    // while (!element.classList.contains("task")) {
+    //     element = element.parentElement;
+    // }
+    underTitleDiv.removeChild(element.closest(".task"));
+}
+
+function setEventListenerForDateDiv() {
+    let divs = Array.from(document.querySelectorAll(".col .date"));
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].addEventListener("click", clickOnDate);
     }
-    underTitleDiv.removeChild(element);
+}
+
+function clickOnDate(e) {
+    let element = e.target;
+    if (!element.classList.contains("extra")) {
+        element.classList.add("done");
+        showTicks();
+    }
+    /*let circle = element.querySelector(".circle");
+    let circleDiv = document.createElement("div");
+    circleDiv.innerText = "1";
+    circleDiv.classList.add("circle");
+    if (circle) {
+        element.replaceChild(circleDiv, circle);
+    } else
+        element.appendChild(circleDiv);*/
+}
+
+function showTicks() {
+    let tasks = Array.from(document.querySelectorAll(".task-wrapper"));
+    for (var i = 0; i < tasks.length; i++) {
+        let tickDiv = document.createElement("div");
+        tickDiv.classList.add("tick", "gray");
+        tasks[i].insertBefore(tickDiv, tasks[i].firstChild);
+    }
 }
