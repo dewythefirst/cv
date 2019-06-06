@@ -3,10 +3,11 @@ let arrowLeft = document.querySelector(".arrows img[alt='left']");
 let arrowRight = document.querySelector(".arrows img[alt='right']");
 arrowLeft.addEventListener("click", slideCalendars);
 arrowRight.addEventListener("click", slideCalendars);
+let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let weekDaysFullEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 function initializeCalendars() {
     calendarsWrapper.innerHTML = "";
-    let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     for (var i = 0; i < 12; i++) {
         let weeksQ = 5;
         let calendarDiv = document.createElement("div");
@@ -58,7 +59,7 @@ function initializeCalendars() {
                                 dateDiv.classList.add("today");
                 }
                 dateDiv.innerText = "" + dayNumber;
-                theRealDate = `${theRealDate.getDate()}.${theRealDate.getMonth() + 1}.${theRealDate.getFullYear()}`;
+                theRealDate = `${theRealDate.getFullYear()}-${theRealDate.getMonth() + 1}-${theRealDate.getDate()}`;
                 dateDiv.setAttribute("data-date", theRealDate);
                 // dateDiv.addEventListener("click", clickOnDate);
                 colDiv.appendChild(dateDiv);
@@ -170,11 +171,17 @@ function setEventListenerForDateDiv() {
     }
 }
 
+let flagAddingTask = false;
+
 function clickOnDate(e) {
     let element = e.target;
-    if (!element.classList.contains("extra")) {
-        element.classList.add("done");
-        showTicks();
+    if (!flagAddingTask) {
+        if (!element.classList.contains("extra")) {
+            element.classList.add("done");
+            flagAddingTask = true;
+            showTicks(true);
+            showDialog(true);
+        }
     }
     /*let circle = element.querySelector(".circle");
     let circleDiv = document.createElement("div");
@@ -186,11 +193,77 @@ function clickOnDate(e) {
         element.appendChild(circleDiv);*/
 }
 
-function showTicks() {
+function showTicks(flag) {
     let tasks = Array.from(document.querySelectorAll(".task-wrapper"));
     for (var i = 0; i < tasks.length; i++) {
-        let tickDiv = document.createElement("div");
-        tickDiv.classList.add("tick", "gray");
-        tasks[i].insertBefore(tickDiv, tasks[i].firstChild);
+        if (flag) {
+            let tickDiv = document.createElement("div");
+            tickDiv.classList.add("tick", "gray");
+            tickDiv.addEventListener("click", toggleTick);
+            if (!tasks[i].querySelector(".tick"))
+                tasks[i].insertBefore(tickDiv, tasks[i].firstChild);
+        } else if (!flag) {
+            let tickDiv = tasks[i].querySelector(".tick");
+            // toggleTick(tickDiv);
+            tickDiv.remove();
+        }
+    }
+}
+
+function toggleTick(e) {
+    let element = e;
+    if (!e.nodeType) {
+        element = window.event.target;
+    }
+    console.log(element);
+    let textWrapper = element.parentElement.querySelector(".task-text");
+    if (element.classList.contains("gray")) {
+        element.classList.remove("gray");
+        textWrapper.classList.add("green");
+        element.classList.add("green");
+    } else {
+        element.classList.remove("green");
+        textWrapper.classList.remove("green");
+        element.classList.add("gray");
+    }
+}
+
+function showDialog(flag) {
+    let event = window.event;
+    let tasksWrapper = document.querySelector(".tasks-wrapper");
+    let dialogWrapper = document.querySelector(".dialog-wrapper");
+    if (!flag) {
+        dialogWrapper.remove();
+    } else {
+        let dialogWrapperDiv = document.createElement("div");
+        dialogWrapperDiv.classList.add("dialog-wrapper", "active");
+        let dateDiv = document.createElement("div");
+        dateDiv.classList.add("date");
+        let date = event.target.getAttribute('data-date');
+        date = new Date(date);
+        let weekDay;
+        if (date.getDay() == 0) {
+            weekDay = 6;
+        } else {
+            weekDay = date.getDay() - 1;
+        }
+        dateDiv.innerText = `${weekDaysFullEn[weekDay]} ${date.getDate()} ${monthNameEn[date.getMonth()]} ${date.getFullYear()}`;
+        dialogWrapperDiv.appendChild(dateDiv);
+        let taskListDiv = document.createElement("div");
+        taskListDiv.classList.add("task-list");
+        dialogWrapperDiv.appendChild(taskListDiv);
+        let buttonsWrapperDiv = document.createElement("div");
+        buttonsWrapperDiv.classList.add("buttons-wrapper");
+        let acceptDiv = document.createElement("div");
+        acceptDiv.classList.add("accept");
+        acceptDiv.innerText = "Accept";
+        let dismissDiv = document.createElement("div");
+        dismissDiv.classList.add("dismiss");
+        dismissDiv.innerText = "Dismiss";
+        buttonsWrapperDiv.appendChild(acceptDiv);
+        buttonsWrapperDiv.appendChild(dismissDiv);
+        dialogWrapperDiv.appendChild(buttonsWrapperDiv);
+        document.querySelector(".main-wrapper").insertBefore(dialogWrapperDiv, tasksWrapper);
+        tasksWrapper.style.animation = "bloom ease 1s infinite alternate";
     }
 }

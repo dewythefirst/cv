@@ -134,6 +134,9 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date {
   background: linear-gradient(45deg, #c823be 0%, #ff8c2d 100%);
+  /*background: #bc4e9c;  !* fallback for old browsers *!
+  background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  !* Chrome 10-25, Safari 5.1-6 *!
+  background: linear-gradient(to right, #f80759, #bc4e9c); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -208,6 +211,62 @@ header .user-wrapper .user-name {
 }
 .main-wrapper .arrows img:active {
   transform: scale(0.8);
+}
+.main-wrapper .dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.main-wrapper .dialog-wrapper .date {
+  font-family: "Poppins", sans-serif;
+  border-bottom: 1px solid lightgray;
+}
+.main-wrapper .dialog-wrapper .task-list {
+  width: 100%;
+  margin: 10px 0;
+}
+.main-wrapper .dialog-wrapper .task-list .task-text {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+  word-wrap: break-word;
+  max-width: 95%;
+}
+.main-wrapper .dialog-wrapper .task-list .task-text .tick {
+  width: 25px;
+  height: 25px;
+  background: url("../images/tick-green.png") no-repeat center;
+  background-size: contain;
+}
+.main-wrapper .dialog-wrapper .buttons-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.main-wrapper .dialog-wrapper .buttons-wrapper div {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.main-wrapper .dialog-wrapper .buttons-wrapper div:first-child {
+  border-radius: 5px 0 0 5px;
+  background: #a8ff78;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.main-wrapper .dialog-wrapper .buttons-wrapper div:last-child {
+  border-radius: 0 5px 5px 0;
+  color: crimson;
+  background-color: #eeeeee;
 }
 .main-wrapper .tasks-wrapper {
   margin-top: 40px;
@@ -293,7 +352,7 @@ header .user-wrapper .user-name {
   background: url("../images/tick-gray.png") no-repeat center;
   background-size: contain;
 }
-.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick.green, .main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick:hover {
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .tick.green {
   background: url("../images/tick-green.png") no-repeat center;
   background-size: contain;
 }
@@ -305,6 +364,11 @@ header .user-wrapper .user-name {
   text-shadow: 1px 1px 3px black;
   border-radius: 5px;
   padding: 8px;
+  word-wrap: break-word;
+  max-width: 95%;
+}
+.main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-text.green {
+  border: 2px solid limegreen;
 }
 .main-wrapper .tasks-wrapper .tasks .under-title .task .task-wrapper .task-settings {
   margin-left: 10px;
@@ -355,8 +419,17 @@ header .user-wrapper .user-name {
   text-shadow: 1px 1px 3px black;
 }
 
-.shadow, .main-wrapper .calendars-wrapper .calendar, .main-wrapper .tasks-wrapper, .main-wrapper .history-wrapper {
+.shadow, .main-wrapper .calendars-wrapper .calendar, .main-wrapper .dialog-wrapper, .main-wrapper .tasks-wrapper, .main-wrapper .history-wrapper {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes bloom {
+  0% {
+    box-shadow: 0px 0px 5px 0px lightgreen;
+  }
+  100% {
+    box-shadow: 0px 0px 25px 0px lightgreen;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

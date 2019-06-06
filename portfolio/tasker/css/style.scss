@@ -149,6 +149,9 @@ header {
 
           .date {
             background: linear-gradient(45deg, rgba(200, 35, 190, 1) 0%, rgba(255, 140, 45, 1) 100%);
+            /*background: #bc4e9c;  !* fallback for old browsers *!
+            background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  !* Chrome 10-25, Safari 5.1-6 *!
+            background: linear-gradient(to right, #f80759, #bc4e9c); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
             display: flex;
             justify-content: center;
             align-items: center;
@@ -233,11 +236,76 @@ header {
     }
   }
 
+  .dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    border-radius: 5px;
+    padding: 10px;
+    @extend .shadow;
+
+    .date {
+      font-family: "Poppins", sans-serif;
+      border-bottom: 1px solid lightgray;
+    }
+
+    .task-list {
+      width: 100%;
+      margin: 10px 0;
+
+      .task-text {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+        color: gray;
+        word-wrap: break-word;
+        max-width: 95%;
+
+        .tick {
+          width: 25px;
+          height: 25px;
+          background: url("../images/tick-green.png") no-repeat center;
+          background-size: contain;
+        }
+      }
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+
+      div {
+        width: 100%;
+        //border: 1px solid red;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+
+        &:first-child {
+          border-radius: 5px 0 0 5px;
+          background: #a8ff78; /* fallback for old browsers */
+          background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78); /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        &:last-child {
+          border-radius: 0 5px 5px 0;
+          color: crimson;
+          background-color: #eeeeee;
+        }
+      }
+    }
+  }
+
   .tasks-wrapper {
     margin-top: 40px;
     border-radius: 5px;
     padding: 20px;
     @extend .shadow;
+
 
     .add-task {
       display: flex;
@@ -323,14 +391,17 @@ header {
               margin-right: 5px;
               transition: 0.3s;
               cursor: pointer;
-              &:hover {
-                @extend .green;
-              }
+
+              //&:hover {
+              //  @extend .green;
+              //}
+
               &.gray {
                 background: url('../images/tick-gray.png') no-repeat center;
                 background-size: contain;
               }
-              &.green{
+
+              &.green {
                 background: url('../images/tick-green.png') no-repeat center;
                 background-size: contain;
               }
@@ -343,6 +414,12 @@ header {
               text-shadow: 1px 1px 3px black;
               border-radius: 5px;
               padding: 8px;
+              word-wrap: break-word;
+              max-width: 95%;
+
+              &.green {
+                border: 2px solid limegreen;
+              }
             }
 
             .task-settings {
@@ -411,4 +488,13 @@ header {
 
 .shadow {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes bloom {
+  0% {
+    box-shadow: 0px 0px 5px 0px lightgreen;
+  }
+  100% {
+    box-shadow: 0px 0px 25px 0px lightgreen;
+  }
 }
