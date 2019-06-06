@@ -452,6 +452,7 @@ header {
     margin-top: 40px;
     border-radius: 5px;
     padding: 20px;
+    transition: 1s;
     @extend .shadow;
 
     .history {

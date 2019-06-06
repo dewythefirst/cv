@@ -174,9 +174,11 @@ function setEventListenerForDateDiv() {
 let flagAddingTask = false;
 
 let lastClickedDate;
+
 function clickOnDate(e) {
     let element = e.target;
-    lastClickedDate = element;
+    if (!flagAddingTask)
+        lastClickedDate = element;
     if (!flagAddingTask) {
         if (!element.classList.contains("extra")) {
             element.classList.add("done");
@@ -235,6 +237,7 @@ function showDialog(flag) {
     let event = window.event;
     let tasksWrapper = document.querySelector(".tasks-wrapper");
     let dialogWrapper = document.querySelector(".dialog-wrapper");
+    let historyWrapper = document.querySelector(".history-wrapper");
     if (!flag) {
         dialogWrapper.remove();
         tasksWrapper.style.animation = "none";

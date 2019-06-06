@@ -391,6 +391,7 @@ header .user-wrapper .user-name {
   margin-top: 40px;
   border-radius: 5px;
   padding: 20px;
+  transition: 1s;
 }
 .main-wrapper .history-wrapper .history {
   display: flex;
