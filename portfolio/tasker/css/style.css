@@ -285,6 +285,9 @@ header .user-wrapper .user-name {
   justify-content: center;
   align-items: center;
 }
+.main-wrapper .tasks-wrapper .add-task.inactive {
+  display: none;
+}
 .main-wrapper .tasks-wrapper .add-task input {
   width: 100%;
   border-radius: 5px 0 0 5px;

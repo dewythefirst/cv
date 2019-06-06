@@ -281,6 +281,7 @@ function showDialog(flag) {
         dialogWrapperDiv.appendChild(buttonsWrapperDiv);
         document.querySelector(".main-wrapper").insertBefore(dialogWrapperDiv, tasksWrapper);
         tasksWrapper.classList.add("animation");
+        document.querySelector(".add-task").classList.add("inactive");
     }
 }
 
@@ -289,6 +290,7 @@ function cancelAddingTasks() {
     showTicks(false);
     lastClickedDate.classList.remove("done");
     flagAddingTask = false;
+    document.querySelector(".add-task").classList.remove("inactive");
 }
 
 function addTaskToDone(flag, element) {
