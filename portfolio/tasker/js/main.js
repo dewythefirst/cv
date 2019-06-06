@@ -173,8 +173,10 @@ function setEventListenerForDateDiv() {
 
 let flagAddingTask = false;
 
+let lastClickedDate;
 function clickOnDate(e) {
     let element = e.target;
+    lastClickedDate = element;
     if (!flagAddingTask) {
         if (!element.classList.contains("extra")) {
             element.classList.add("done");
@@ -204,7 +206,9 @@ function showTicks(flag) {
                 tasks[i].insertBefore(tickDiv, tasks[i].firstChild);
         } else if (!flag) {
             let tickDiv = tasks[i].querySelector(".tick");
-            // toggleTick(tickDiv);
+            let textWrapper = tickDiv.parentElement.querySelector(".task-text");
+            if (textWrapper.classList.contains("green"))
+                textWrapper.classList.remove("green");
             tickDiv.remove();
         }
     }
@@ -215,7 +219,6 @@ function toggleTick(e) {
     if (!e.nodeType) {
         element = window.event.target;
     }
-    console.log(element);
     let textWrapper = element.parentElement.querySelector(".task-text");
     if (element.classList.contains("gray")) {
         element.classList.remove("gray");
@@ -234,6 +237,7 @@ function showDialog(flag) {
     let dialogWrapper = document.querySelector(".dialog-wrapper");
     if (!flag) {
         dialogWrapper.remove();
+        tasksWrapper.style.animation = "none";
     } else {
         let dialogWrapperDiv = document.createElement("div");
         dialogWrapperDiv.classList.add("dialog-wrapper", "active");
@@ -260,10 +264,18 @@ function showDialog(flag) {
         let dismissDiv = document.createElement("div");
         dismissDiv.classList.add("dismiss");
         dismissDiv.innerText = "Dismiss";
+        dismissDiv.addEventListener("click", cancelAddingTasks);
         buttonsWrapperDiv.appendChild(acceptDiv);
         buttonsWrapperDiv.appendChild(dismissDiv);
         dialogWrapperDiv.appendChild(buttonsWrapperDiv);
         document.querySelector(".main-wrapper").insertBefore(dialogWrapperDiv, tasksWrapper);
         tasksWrapper.style.animation = "bloom ease 1s infinite alternate";
     }
+}
+
+function cancelAddingTasks() {
+    showDialog(false);
+    showTicks(false);
+    lastClickedDate.classList.remove("done");
+    flagAddingTask = false;
 }
