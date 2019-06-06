@@ -250,7 +250,7 @@ function showDialog(flag) {
         dateDiv.classList.add("date");
         let date = event.target.getAttribute('data-date');
         date = date.replace(/-/g, '/');
-        console.log(date);
+        // console.log(date);
         date = new Date(date);
         let weekDay;
         if (date.getDay() == 0) {
@@ -262,6 +262,10 @@ function showDialog(flag) {
         dialogWrapperDiv.appendChild(dateDiv);
         let taskListDiv = document.createElement("div");
         taskListDiv.classList.add("task-list");
+        let helperDiv = document.createElement("div");
+        helperDiv.classList.add("helper");
+        helperDiv.innerText = "Choose the tasks from below :)";
+        taskListDiv.appendChild(helperDiv);
         dialogWrapperDiv.appendChild(taskListDiv);
         let buttonsWrapperDiv = document.createElement("div");
         buttonsWrapperDiv.classList.add("buttons-wrapper");
@@ -299,5 +303,6 @@ function addTaskToDone(flag, element) {
         textSpan.innerText = element.innerText;
         taskTextDiv.appendChild(textSpan);
         dialogTasks.appendChild(taskTextDiv);
+        document.querySelector(".helper").remove();
     }
 }
