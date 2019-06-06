@@ -226,10 +226,12 @@ function toggleTick(e) {
         element.classList.remove("gray");
         textWrapper.classList.add("green");
         element.classList.add("green");
+        addTaskToDone(true, textWrapper);
     } else {
         element.classList.remove("green");
         textWrapper.classList.remove("green");
         element.classList.add("gray");
+        addTaskToDone(false, textWrapper);
     }
 }
 
@@ -240,7 +242,7 @@ function showDialog(flag) {
     let historyWrapper = document.querySelector(".history-wrapper");
     if (!flag) {
         dialogWrapper.remove();
-        tasksWrapper.style.animation = "none";
+        tasksWrapper.classList.remove("animation");
     } else {
         let dialogWrapperDiv = document.createElement("div");
         dialogWrapperDiv.classList.add("dialog-wrapper", "active");
@@ -272,7 +274,7 @@ function showDialog(flag) {
         buttonsWrapperDiv.appendChild(dismissDiv);
         dialogWrapperDiv.appendChild(buttonsWrapperDiv);
         document.querySelector(".main-wrapper").insertBefore(dialogWrapperDiv, tasksWrapper);
-        tasksWrapper.style.animation = "bloom ease 1s infinite alternate";
+        tasksWrapper.classList.add("animation");
     }
 }
 
@@ -281,4 +283,19 @@ function cancelAddingTasks() {
     showTicks(false);
     lastClickedDate.classList.remove("done");
     flagAddingTask = false;
+}
+
+function addTaskToDone(flag, element) {
+    let dialogTasks = document.querySelector(".dialog-wrapper .task-list");
+    if (flag) {
+        let taskTextDiv = document.createElement("div");
+        taskTextDiv.classList.add("task-text");
+        let tickDiv = document.createElement("div");
+        tickDiv.classList.add("tick");
+        taskTextDiv.appendChild(tickDiv);
+        let textSpan = document.createElement("span");
+        textSpan.innerText = element.innerText;
+        taskTextDiv.appendChild(textSpan);
+        dialogTasks.appendChild(taskTextDiv);
+    }
 }

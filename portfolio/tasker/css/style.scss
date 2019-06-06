@@ -258,16 +258,16 @@ header {
         display: flex;
         align-items: center;
         margin-left: 10px;
+        width: 100%;
         font-family: "Poppins", sans-serif;
         color: gray;
         word-wrap: break-word;
         max-width: 95%;
+        border-left: 2px solid limegreen;
+        padding: 2px 5px;
 
-        .tick {
-          width: 25px;
-          height: 25px;
-          background: url("../images/tick-green.png") no-repeat center;
-          background-size: contain;
+        &:not(:last-child) {
+          margin-bottom: 10px;
         }
       }
     }
@@ -306,6 +306,9 @@ header {
     padding: 20px;
     @extend .shadow;
 
+    &.animation {
+      animation: bloom ease 1s infinite alternate;
+    }
 
     .add-task {
       display: flex;
@@ -452,7 +455,6 @@ header {
     margin-top: 40px;
     border-radius: 5px;
     padding: 20px;
-    transition: 1s;
     @extend .shadow;
 
     .history {

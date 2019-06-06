@@ -232,16 +232,16 @@ header .user-wrapper .user-name {
   display: flex;
   align-items: center;
   margin-left: 10px;
+  width: 100%;
   font-family: "Poppins", sans-serif;
   color: gray;
   word-wrap: break-word;
   max-width: 95%;
+  border-left: 2px solid limegreen;
+  padding: 2px 5px;
 }
-.main-wrapper .dialog-wrapper .task-list .task-text .tick {
-  width: 25px;
-  height: 25px;
-  background: url("../images/tick-green.png") no-repeat center;
-  background-size: contain;
+.main-wrapper .dialog-wrapper .task-list .task-text:not(:last-child) {
+  margin-bottom: 10px;
 }
 .main-wrapper .dialog-wrapper .buttons-wrapper {
   display: flex;
@@ -272,6 +272,9 @@ header .user-wrapper .user-name {
   margin-top: 40px;
   border-radius: 5px;
   padding: 20px;
+}
+.main-wrapper .tasks-wrapper.animation {
+  animation: bloom ease 1s infinite alternate;
 }
 .main-wrapper .tasks-wrapper .add-task {
   display: flex;
@@ -391,7 +394,6 @@ header .user-wrapper .user-name {
   margin-top: 40px;
   border-radius: 5px;
   padding: 20px;
-  transition: 1s;
 }
 .main-wrapper .history-wrapper .history {
   display: flex;
