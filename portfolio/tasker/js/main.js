@@ -249,6 +249,7 @@ function showDialog(flag) {
         let dateDiv = document.createElement("div");
         dateDiv.classList.add("date");
         let date = event.target.getAttribute('data-date');
+        date.replace("-", "/");
         date = new Date(date);
         let weekDay;
         if (date.getDay() == 0) {
