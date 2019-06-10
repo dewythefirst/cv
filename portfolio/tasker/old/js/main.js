@@ -1,3 +1,8 @@
+let calendarsWrapper = document.querySelector(".calendars-wrapper");
+let arrowLeft = document.querySelector(".arrows img[alt='left']");
+let arrowRight = document.querySelector(".arrows img[alt='right']");
+arrowLeft.addEventListener("click", slideCalendars);
+arrowRight.addEventListener("click", slideCalendars);
 let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let weekDaysFullEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
