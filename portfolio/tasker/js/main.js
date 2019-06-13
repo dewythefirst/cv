@@ -1,82 +1,148 @@
 let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let weekDaysFullEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let weekDays3En = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+let calendarWrapper = document.querySelector(".big-calendar");
 
-function initializeCalendars() {
-    calendarsWrapper.innerHTML = "";
-    for (var i = 0; i < 12; i++) {
-        let weeksQ = 5;
-        let calendarDiv = document.createElement("div");
-        calendarDiv.classList.add("calendar");
-        let monthName = document.createElement("div");
-        monthName.classList.add("month-name");
-        let dateMonth = new Date();
-        let newMonth = dateMonth.getMonth() + i;
-        // if (newMonth < 0) {
-        //     newMonth += 12;
-        //     dateMonth.setFullYear(dateMonth.getFullYear() - 1);
-        // }
-        dateMonth.setMonth(newMonth, 1);
-
-        monthName.innerText = monthNameEn[dateMonth.getMonth()];
-        calendarDiv.appendChild(monthName);
-        let datesWrapper = document.createElement("div");
-        datesWrapper.classList.add("dates-wrapper");
-        for (var k = 0; k < 7; k++) {
-            let weekDaysEn = ["M", "T", "W", "T", "F", "S", "S"];
-            // let weekDaysEn = ["S", "M", "T", "W", "T", "F", "S"];
-            let colDiv = document.createElement("div");
-            colDiv.classList.add("col");
-            let weekDay = document.createElement("span");
-            weekDay.classList.add("week-day");
-            weekDay.innerText = weekDaysEn[k];
-            colDiv.appendChild(weekDay);
-            for (var d = 0; d < weeksQ; d++) {
-                let dateDiv = document.createElement("div");
-                dateDiv.classList.add("date");
-                let dayInMs = 86400000;
-                let currentDate = new Date(dateMonth.getTime() + dayInMs * 7 * d);
-                let currentDateDayNumber = currentDate.getDay();
-                if (currentDateDayNumber === 0)
-                    currentDateDayNumber = 7;
-                let dayNumber = new Date(currentDate.getTime() - (currentDateDayNumber - k - 1) * dayInMs);
-                let theRealDate = dayNumber;
-                dayNumber = Number(dayNumber.getDate());
-                if (d === 0 && dayNumber > 8) {
-                    dateDiv.classList.add("extra"); // лишний (из другого месяца)
-                }
-                if ((d >= 4 && dayNumber < 14)) {
-                    dateDiv.classList.add("extra"); // лишний (из другого месяца)
-                }
-                if (theRealDate.getDate() === new Date().getDate()) {
-                    if (theRealDate.getMonth() === new Date().getMonth())
-                        if (theRealDate.getFullYear() === new Date().getFullYear())
-                            if (!dateDiv.classList.contains("extra"))
-                                dateDiv.classList.add("today");
-                }
-                dateDiv.innerText = "" + dayNumber;
-                theRealDate = `${theRealDate.getFullYear()}-${theRealDate.getMonth() + 1}-${theRealDate.getDate()}`;
-                dateDiv.setAttribute("data-date", theRealDate);
-                // dateDiv.addEventListener("click", clickOnDate);
-                colDiv.appendChild(dateDiv);
-                if (d === 4 && k === 0 && (dayNumber + 7 <= lastDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()))) { // если не хватает строк для окончания месяца- добавить
-                    weeksQ++;
-                }
-            }
-            datesWrapper.appendChild(colDiv);
+function Calendar(weeksToShow = 2) {
+    this.getTheWeekStart = function (date) {
+        let dayOfTheWeek = date.getDay() === 0 ? 6 : (date.getDay() - 1);
+        let dayInMs = 24 * 60 * 60 * 1000;
+        return new Date(date - dayOfTheWeek * dayInMs);
+    };
+    let date = new Date();
+    date = this.getTheWeekStart(date);
+    let tasksCount = Math.max(1, 10);
+    let dayInMs = 24 * 60 * 60 * 1000;
+    let clearCalendarWrapper = function () {
+        calendarWrapper.innerHTML = "";
+    };
+    let initializeHeader = function () {
+        let rowDiv = document.createElement("div");
+        rowDiv.classList.add("row", "main");
+        let colDiv = document.createElement("div");
+        colDiv.classList.add("col", "main");
+        colDiv.innerText = "Task List";
+        rowDiv.appendChild(colDiv);
+        for (let i = 0; i < weeksToShow * 7; i++) { // cols loop
+            colDiv = document.createElement("div");
+            if (date.getDate() === new Date().getDate())
+                if (date.getMonth() === new Date().getMonth())
+                    if (date.getFullYear() === new Date().getFullYear())
+                        colDiv.classList.add("today");
+            colDiv.classList.add("col", "date");
+            let spanDate = document.createElement("span");
+            let spanDay = document.createElement("span");
+            spanDate.classList.add("date");
+            spanDay.classList.add("day");
+            spanDate.innerText = date.getDate();
+            let weekDay = (date.getDay() === 0) ? 6 : date.getDay() - 1;
+            spanDay.innerText = weekDays3En[weekDay];
+            colDiv.appendChild(spanDate);
+            colDiv.appendChild(spanDay);
+            rowDiv.appendChild(colDiv);
+            date = new Date(date.getTime() + dayInMs);
+            calendarWrapper.appendChild(rowDiv);
         }
-        calendarDiv.appendChild(datesWrapper);
-        calendarsWrapper.appendChild(calendarDiv);
-    }
-    calendarsWrapper.innerHTML = calendarsWrapper.innerHTML + "<div style='min-width: 1px; height: 1px;'></div>";
-    setEventListenerForDateDiv();
+    };
+    let findToday = function () {
+        let findToday = document.querySelector(".row.main");
+        findToday = Array.from(findToday.querySelectorAll(".col.date"));
+        for (var i = 0; i < findToday.length; i++) {
+            if (findToday[i].classList.contains("today"))
+                return i;
+        }
+    };
+    let addTask = function (i) { // сюда передавать ID например, где будет храниться подробная инфа
+        let taskRow = document.createElement("div");
+        taskRow.classList.add("row");
+        let taskDiv = document.createElement("div");
+        taskDiv.classList.add("col", "main");
+        taskDiv.innerText = "Task " + i;
+        taskRow.appendChild(taskDiv);
+        let today = findToday();
+        for (let i = 0; i < weeksToShow * 7; i++) {
+            taskDiv = document.createElement("div");
+            taskDiv.classList.add("col", "date");
+            if (i === today)
+                taskDiv.classList.add("today");
+            taskDiv.addEventListener("click", taskClick);
+            taskRow.appendChild(taskDiv);
+        }
+        calendarWrapper.appendChild(taskRow);
+    };
+    let addFooter = function () {
+
+    };
+    this.init = function () {
+        clearCalendarWrapper();
+        initializeHeader();
+        for (let i = 0; i < 10; i++)
+            addTask(i);
+        addFooter();
+    };
 }
 
-initializeCalendars();
+let calendar = new Calendar();
+calendar.init();
 
+function taskClick(e) {
+    // todo получить цвет с главной колонки
+    let element = e.target;
+    if (element.classList.contains("done")) {
+        element.classList.remove("done", "orange");
+        element.removeAttribute("style");
+    } else
+        element.classList.add("done", "orange");
+    let elementParentRow = element.closest(".row");
+    let allDays = Array.from(elementParentRow.querySelectorAll(".col.date"));
+    let streakArray = [];
+    let counter = 0;
+    for (let i = 0; i < allDays.length; i++)
+        if (allDays[i].classList.contains("done")) {
+            if (allDays[i - 1] && allDays[i - 1].classList.contains("done")) {
+                if (!checkIfPresent(streakArray, allDays[i - 1]))
+                    streakArray[counter++] = allDays[i - 1];
+                streakArray[counter++] = allDays[i];
+            } else {
+                allDays[i].style.opacity = "0.25";
+            }
+        } else {
+            if (streakArray.length !== 0) {
+                redrawColors(streakArray);
+                streakArray = [];
+                counter = 0;
+            }
+        }
+    if (allDays[allDays.length - 1].classList.contains("done")) {
+        if (streakArray.length !== 0) {
+            redrawColors(streakArray);
+        }
+    }
+}
+
+function redrawColors(array) {
+    let opacityValue = 100 / array.length;
+    opacityValue = opacityValue / 100;
+    // todo менять прозрачность в RGBA цвете
+    for (let i = 0; i < array.length; i++) {
+        array[i].style.opacity = Math.max(0.15, opacityValue * (i + 1));
+    }
+}
+
+function checkIfPresent(array, element) {
+    for (let i = 0; array.length; i++) {
+        if (array[i] === element)
+            return true;
+        else continue;
+    }
+    return false;
+}
 
 function lastDayOfMonth(Year, Month) {
     return new Date((new Date(Year, Month, 1)) - 1);
 }
+
+/*
 
 let currentMonthNumber = 0;
 
@@ -94,10 +160,10 @@ function slideCalendars(side) {
             currentMonthNumber++;
     }
     calendarsWrapper.scrollLeft = leftValues[currentMonthNumber];
-    /*if (currentMonthNumber === 11) {
+    /!*if (currentMonthNumber === 11) {
         scrollTo(calendarsWrapper, leftValues[currentMonthNumber] - 30);
     } else
-        scrollTo(calendarsWrapper, leftValues[currentMonthNumber]);*/
+        scrollTo(calendarsWrapper, leftValues[currentMonthNumber]);*!/
 }
 
 function scrollTo(elementToChange, to, duration = 100) {
@@ -182,14 +248,14 @@ function clickOnDate(e) {
             showDialog(true);
         }
     }
-    /*let circle = element.querySelector(".circle");
+    /!*let circle = element.querySelector(".circle");
     let circleDiv = document.createElement("div");
     circleDiv.innerText = "1";
     circleDiv.classList.add("circle");
     if (circle) {
         element.replaceChild(circleDiv, circle);
     } else
-        element.appendChild(circleDiv);*/
+        element.appendChild(circleDiv);*!/
 }
 
 function showTicks(flag) {
@@ -302,4 +368,4 @@ function addTaskToDone(flag, element) {
         dialogTasks.appendChild(taskTextDiv);
         document.querySelector(".helper").remove();
     }
-}
+}*/

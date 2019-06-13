@@ -59,15 +59,17 @@ body {
 .main-wrapper .big-calendar .row .col:not(:last-child) {
   border-right: 1px solid #f0f0f0;
 }
+.main-wrapper .big-calendar .row .col + .today {
+  border-right: none;
+}
 .main-wrapper .big-calendar .row .col.main {
   min-width: 150px;
   padding: 5px;
   background-color: white;
-  border-right: none;
 }
 .main-wrapper .big-calendar .row .col.date {
   width: calc(100% / 14);
-  transition: 0.5s;
+  transition: 0.75s;
   background-color: #fff;
 }
 .main-wrapper .big-calendar .row .col.date:hover {
@@ -78,51 +80,8 @@ body {
   border-right: 1px solid lightgray;
 }
 
-.gradient.red {
-  background: #bc4e9c;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f80759, #bc4e9c);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.gradient.orange {
-  background: #fc4a1a;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f7b733, #fc4a1a);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.gradient.yellow {
-  background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
-}
-.gradient.green {
-  background: #00F260;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #0575E6, #00F260);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #0575E6, #00F260);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.gradient.lightblue {
-  background: #2193b0;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.gradient.darkblue {
-  background: #2c3e50;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3498db, #2c3e50);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3498db, #2c3e50);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.gradient.purple {
-  background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+.done.orange, .main-wrapper .big-calendar .row .orange.col.date {
+  background-color: orange !important;
 }
 
 .shadow, .main-wrapper .big-calendar {
