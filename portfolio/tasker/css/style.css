@@ -29,58 +29,56 @@ body {
   display: flex;
   flex-direction: column;
 }
+@media only screen and (max-width: 768px) {
+  .main-wrapper .big-calendar {
+    width: 100%;
+  }
+}
 .main-wrapper .big-calendar .row {
   display: flex;
 }
-.main-wrapper .big-calendar .row:not(:last-child) .col {
-  border-bottom: 1px solid #f0f0f0;
+.main-wrapper .big-calendar .row.main {
+  border-bottom: 1px solid lightgray;
 }
-.main-wrapper .big-calendar .row.main .col {
+.main-wrapper .big-calendar .row.main .cell {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: default;
 }
-.main-wrapper .big-calendar .row.main .col span.date {
+.main-wrapper .big-calendar .row.main .cell span.date {
   font-weight: bold;
 }
-.main-wrapper .big-calendar .row.main .col span.day {
+.main-wrapper .big-calendar .row.main .cell span.day {
   color: gray;
   font-size: 0.9em;
 }
-.main-wrapper .big-calendar .row.main .col.today {
-  border-left: 1px solid lightgray;
+.main-wrapper .big-calendar .row .cell {
+  padding: 5px;
+}
+.main-wrapper .big-calendar .row .cell.main {
+  min-width: 150px;
+  background-color: white;
   border-right: 1px solid lightgray;
 }
-.main-wrapper .big-calendar .row .col {
-  padding: 5px;
-}
-.main-wrapper .big-calendar .row .col:not(:last-child) {
-  border-right: 1px solid #f0f0f0;
-}
-.main-wrapper .big-calendar .row .col + .today {
-  border-right: none;
-}
-.main-wrapper .big-calendar .row .col.main {
-  min-width: 150px;
-  padding: 5px;
-  background-color: white;
-}
-.main-wrapper .big-calendar .row .col.date {
+.main-wrapper .big-calendar .row .cell.date {
   width: calc(100% / 14);
   transition: 0.75s;
   background-color: #fff;
+  min-width: 50px;
 }
-.main-wrapper .big-calendar .row .col.date:hover {
-  background-color: transparent;
+.main-wrapper .big-calendar .row .cell.date:not(:last-child) {
+  border-right: 1px solid #f5f5f5;
 }
-.main-wrapper .big-calendar .row .col.date.today {
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
+.main-wrapper .big-calendar .row:not(:last-child) {
+  border-bottom: 1px solid #f5f5f5;
+}
+.main-wrapper .big-calendar .row:first-child {
+  border-bottom: 1px solid lightgray;
 }
 
-.done.orange, .main-wrapper .big-calendar .row .orange.col.date {
+.done.orange, .main-wrapper .big-calendar .row .orange.cell.date {
   background-color: orange !important;
 }
 

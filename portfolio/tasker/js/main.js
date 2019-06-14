@@ -19,17 +19,17 @@ function Calendar(weeksToShow = 2) {
     let initializeHeader = function () {
         let rowDiv = document.createElement("div");
         rowDiv.classList.add("row", "main");
-        let colDiv = document.createElement("div");
-        colDiv.classList.add("col", "main");
-        colDiv.innerText = "Task List";
-        rowDiv.appendChild(colDiv);
-        for (let i = 0; i < weeksToShow * 7; i++) { // cols loop
-            colDiv = document.createElement("div");
+        let cellDiv = document.createElement("div");
+        cellDiv.classList.add("cell", "main");
+        cellDiv.innerText = "Task List";
+        rowDiv.appendChild(cellDiv);
+        for (let i = 0; i < weeksToShow * 7; i++) { // cells loop
+            cellDiv = document.createElement("div");
             if (date.getDate() === new Date().getDate())
                 if (date.getMonth() === new Date().getMonth())
                     if (date.getFullYear() === new Date().getFullYear())
-                        colDiv.classList.add("today");
-            colDiv.classList.add("col", "date");
+                        cellDiv.classList.add("today");
+            cellDiv.classList.add("cell", "date");
             let spanDate = document.createElement("span");
             let spanDay = document.createElement("span");
             spanDate.classList.add("date");
@@ -37,16 +37,16 @@ function Calendar(weeksToShow = 2) {
             spanDate.innerText = date.getDate();
             let weekDay = (date.getDay() === 0) ? 6 : date.getDay() - 1;
             spanDay.innerText = weekDays3En[weekDay];
-            colDiv.appendChild(spanDate);
-            colDiv.appendChild(spanDay);
-            rowDiv.appendChild(colDiv);
+            cellDiv.appendChild(spanDate);
+            cellDiv.appendChild(spanDay);
+            rowDiv.appendChild(cellDiv);
             date = new Date(date.getTime() + dayInMs);
             calendarWrapper.appendChild(rowDiv);
         }
     };
     let findToday = function () {
         let findToday = document.querySelector(".row.main");
-        findToday = Array.from(findToday.querySelectorAll(".col.date"));
+        findToday = Array.from(findToday.querySelectorAll(".cell.date"));
         for (var i = 0; i < findToday.length; i++) {
             if (findToday[i].classList.contains("today"))
                 return i;
@@ -56,13 +56,13 @@ function Calendar(weeksToShow = 2) {
         let taskRow = document.createElement("div");
         taskRow.classList.add("row");
         let taskDiv = document.createElement("div");
-        taskDiv.classList.add("col", "main");
+        taskDiv.classList.add("cell", "main");
         taskDiv.innerText = "Task " + i;
         taskRow.appendChild(taskDiv);
         let today = findToday();
         for (let i = 0; i < weeksToShow * 7; i++) {
             taskDiv = document.createElement("div");
-            taskDiv.classList.add("col", "date");
+            taskDiv.classList.add("cell", "date");
             if (i === today)
                 taskDiv.classList.add("today");
             taskDiv.addEventListener("click", taskClick);
@@ -94,7 +94,7 @@ function taskClick(e) {
     } else
         element.classList.add("done", "orange");
     let elementParentRow = element.closest(".row");
-    let allDays = Array.from(elementParentRow.querySelectorAll(".col.date"));
+    let allDays = Array.from(elementParentRow.querySelectorAll(".cell.date"));
     let streakArray = [];
     let counter = 0;
     for (let i = 0; i < allDays.length; i++)
@@ -108,19 +108,19 @@ function taskClick(e) {
             }
         } else {
             if (streakArray.length !== 0) {
-                redrawColors(streakArray);
+                redrawcellors(streakArray);
                 streakArray = [];
                 counter = 0;
             }
         }
     if (allDays[allDays.length - 1].classList.contains("done")) {
         if (streakArray.length !== 0) {
-            redrawColors(streakArray);
+            redrawcellors(streakArray);
         }
     }
 }
 
-function redrawColors(array) {
+function redrawcellors(array) {
     let opacityValue = 100 / array.length;
     opacityValue = opacityValue / 100;
     // todo менять прозрачность в RGBA цвете
@@ -226,7 +226,7 @@ function deleteTask(e) {
 }
 
 function setEventListenerForDateDiv() {
-    let divs = Array.from(document.querySelectorAll(".col .date"));
+    let divs = Array.from(document.querySelectorAll(".cell .date"));
     for (var i = 0; i < divs.length; i++) {
         divs[i].addEventListener("click", clickOnDate);
     }
