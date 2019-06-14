@@ -111,7 +111,7 @@ header .user-wrapper .user-name {
   display: flex;
   padding: 5px;
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,11 +119,11 @@ header .user-wrapper .user-name {
   margin: 0 2px;
 }
 @media only screen and (max-width: 375px) {
-  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell {
+  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col {
     margin: 0 3px;
   }
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .week-day {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .week-day {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,7 +132,7 @@ header .user-wrapper .user-name {
   color: gray;
   cursor: default;
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date {
   background: linear-gradient(45deg, #c823be 0%, #ff8c2d 100%);
   /*background: #bc4e9c;  !* fallback for old browsers *!
   background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);  !* Chrome 10-25, Safari 5.1-6 *!
@@ -151,28 +151,28 @@ header .user-wrapper .user-name {
   transition: 0.2s;
 }
 @media only screen and (max-width: 425px) {
-  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date {
+  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date {
     width: 35px;
     height: 35px;
     margin: 3px 0;
     font-size: 1.1em;
   }
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date:hover {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date:hover {
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date.extra {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date.extra {
   background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date.today {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date.today {
   background: white;
   color: crimson;
   border: 2px solid crimson;
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date.done {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date.done {
   background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
 }
-.main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date .circle {
+.main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date .circle {
   position: absolute;
   width: 12px;
   height: 12px;
@@ -187,7 +187,7 @@ header .user-wrapper .user-name {
   right: -2px;
 }
 @media only screen and (max-width: 425px) {
-  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .cell .date .circle {
+  .main-wrapper .calendars-wrapper .calendar .dates-wrapper .col .date .circle {
     width: 15px;
     height: 15px;
   }

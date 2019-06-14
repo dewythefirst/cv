@@ -20,6 +20,11 @@ body {
   height: 100vh;
 }
 
+header {
+  text-align: center;
+  margin: 10px 0;
+}
+
 .main-wrapper {
   padding: 20px;
 }
