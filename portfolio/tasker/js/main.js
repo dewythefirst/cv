@@ -116,9 +116,6 @@ function taskClick(e) {
                     streakArray[counter++] = allDays[i - 1];
                 streakArray[counter++] = allDays[i];
             } else {
-                console.log(elementRowColor);
-                console.log(hexToRgb(elementRowColor));
-                console.log(hexToRgb(elementRowColor).r);
                 allDays[i].style.backgroundColor = `rgba(${hexToRgb(elementRowColor).r}, ${hexToRgb(elementRowColor).g}, ${hexToRgb(elementRowColor).b}, 0.20)`;
             }
         } else {
