@@ -28,41 +28,55 @@ header {
 .main-wrapper {
   padding: 20px;
 }
-.main-wrapper .big-calendar {
-  margin: 0 auto;
-  width: 75%;
+.main-wrapper .first-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.main-wrapper .first-block .calendar-wrapper {
+  width: 70%;
+}
+@media only screen and (max-width: 768px) {
+  .main-wrapper .first-block .calendar-wrapper {
+    width: 100%;
+  }
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar {
+  border-radius: 7px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 @media only screen and (max-width: 768px) {
-  .main-wrapper .big-calendar {
+  .main-wrapper .first-block .calendar-wrapper .big-calendar {
     width: 100%;
   }
 }
-.main-wrapper .big-calendar .row {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row {
+  overflow: hidden;
   display: flex;
 }
-.main-wrapper .big-calendar .row.main {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.main {
   border-bottom: 1px solid lightgray;
 }
-.main-wrapper .big-calendar .row.main .cell {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.main .cell {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: default;
 }
-.main-wrapper .big-calendar .row.main .cell span.date {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.main .cell span.date {
   font-weight: bold;
 }
-.main-wrapper .big-calendar .row.main .cell span.day {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.main .cell span.day {
   color: gray;
   font-size: 0.9em;
 }
-.main-wrapper .big-calendar .row .cell {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell {
   padding: 5px;
 }
-.main-wrapper .big-calendar .row .cell.main {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main {
   cursor: pointer;
   min-width: 150px;
   background-color: white;
@@ -70,43 +84,94 @@ header {
   display: flex;
   align-items: center;
 }
-.main-wrapper .big-calendar .row .cell.main:hover .settings {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main:hover .settings {
   width: 20px;
 }
-.main-wrapper .big-calendar .row .cell.main:hover .settings div {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main:hover .settings div {
   opacity: 1;
 }
-.main-wrapper .big-calendar .row .cell.main .settings {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main .settings {
   transition: 0.5s;
   width: 0px;
 }
-.main-wrapper .big-calendar .row .cell.main .settings div {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main .settings div {
   transition: 0.5s;
   opacity: 0;
 }
-.main-wrapper .big-calendar .row .cell.main .settings .color {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main .settings .color {
   width: 10px;
   height: 10px;
   border-radius: 100%;
   margin-right: 5px;
 }
-.main-wrapper .big-calendar .row .cell.date {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.date {
   width: calc(100% / 14);
   transition: 0.75s;
   background-color: #fff;
   min-width: 50px;
 }
-.main-wrapper .big-calendar .row .cell.date:not(:last-child) {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.date:not(:last-child) {
   border-right: 1px solid #f5f5f5;
 }
-.main-wrapper .big-calendar .row:not(:last-child) {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row:not(:last-child) {
   border-bottom: 1px solid #f5f5f5;
 }
-.main-wrapper .big-calendar .row:first-child {
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row:first-child {
   border-bottom: 1px solid lightgray;
 }
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: limegreen;
+  transition: 1s;
+  overflow: hidden;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot span {
+  cursor: pointer;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper {
+  transition: 1s;
+  opacity: 0;
+  width: 0%;
+  display: flex;
+  align-items: center;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper input {
+  border: 1px solid lightgray;
+  width: 100%;
+  height: 25px;
+  border-radius: 7px 0 0 7px;
+  padding: 5px;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper .btn {
+  height: 25px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid lightgray;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper .btn.add {
+  border-left: none;
+  border-right: none;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper .btn.cancel {
+  border-radius: 0 7px 7px 0;
+  color: red;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot.active .wrapper {
+  opacity: 1;
+  width: 100%;
+}
+.main-wrapper .first-block .user-wrapper {
+  width: 250px;
+  border-radius: 7px;
+}
 
-.shadow, .main-wrapper .big-calendar {
+.shadow, .main-wrapper .first-block .calendar-wrapper .big-calendar, .main-wrapper .first-block .user-wrapper {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 

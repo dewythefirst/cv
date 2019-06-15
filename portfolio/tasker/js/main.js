@@ -1,7 +1,7 @@
 let monthNameEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let weekDaysFullEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 let weekDays3En = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-let calendarWrapper = document.querySelector(".big-calendar");
+let bigCalendarWrapper = document.querySelector(".big-calendar");
 
 function Calendar(weeksToShow = 2) {
     this.getTheWeekStart = function (date) {
@@ -14,7 +14,7 @@ function Calendar(weeksToShow = 2) {
     let tasksCount = Math.max(1, 10);
     let dayInMs = 24 * 60 * 60 * 1000;
     let clearCalendarWrapper = function () {
-        calendarWrapper.innerHTML = "";
+        bigCalendarWrapper.innerHTML = "";
     };
     let initializeHeader = function () {
         let rowDiv = document.createElement("div");
@@ -41,7 +41,7 @@ function Calendar(weeksToShow = 2) {
             cellDiv.appendChild(spanDay);
             rowDiv.appendChild(cellDiv);
             date = new Date(date.getTime() + dayInMs);
-            calendarWrapper.appendChild(rowDiv);
+            bigCalendarWrapper.appendChild(rowDiv);
         }
     };
     let findToday = function () {
@@ -80,10 +80,45 @@ function Calendar(weeksToShow = 2) {
             taskDiv.addEventListener("click", taskClick);
             taskRow.appendChild(taskDiv);
         }
-        calendarWrapper.appendChild(taskRow);
+        bigCalendarWrapper.appendChild(taskRow);
+    };
+    let showInput = function (flag) {
+        let e = window.event;
+        if (!flag) {
+            e.target.closest(".foot").classList.remove("active");
+            setTimeout(function () {
+                e.target.closest(".foot").querySelector("span").style.display = "block";
+            }, 500);
+        } else {
+            e.target.closest(".foot").classList.add("active");
+            e.target.closest(".foot").querySelector("span").style.display = "none";
+        }
     };
     let addFooter = function () {
-
+        let footerDiv = document.createElement("div");
+        footerDiv.classList.add("row", "foot");
+        let spanDiv = document.createElement("span");
+        spanDiv.innerText = "Add new task";
+        spanDiv.addEventListener("click", showInput);
+        footerDiv.appendChild(spanDiv);
+        let inputDiv = document.createElement("div");
+        inputDiv.classList.add("wrapper");
+        let input = document.createElement("input");
+        input.type = "text";
+        inputDiv.appendChild(input);
+        let button = document.createElement("div");
+        button.classList.add("btn", "add");
+        button.innerText = "Add";
+        inputDiv.appendChild(button);
+        button = document.createElement("div");
+        button.classList.add("btn", "cancel");
+        button.innerText = "X";
+        button.addEventListener("click", function () {
+            showInput(false);
+        });
+        inputDiv.appendChild(button);
+        footerDiv.appendChild(inputDiv);
+        bigCalendarWrapper.appendChild(footerDiv);
     };
     this.init = function () {
         clearCalendarWrapper();
@@ -161,6 +196,7 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
 /*
 
 let currentMonthNumber = 0;
