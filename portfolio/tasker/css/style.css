@@ -66,6 +66,28 @@ header {
   min-width: 150px;
   background-color: white;
   border-right: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+}
+.main-wrapper .big-calendar .row .cell.main:hover .settings {
+  width: 20px;
+}
+.main-wrapper .big-calendar .row .cell.main:hover .settings div {
+  opacity: 1;
+}
+.main-wrapper .big-calendar .row .cell.main .settings {
+  transition: 0.5s;
+  width: 0px;
+}
+.main-wrapper .big-calendar .row .cell.main .settings div {
+  transition: 0.5s;
+  opacity: 0;
+}
+.main-wrapper .big-calendar .row .cell.main .settings .color {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin-right: 5px;
 }
 .main-wrapper .big-calendar .row .cell.date {
   width: calc(100% / 14);

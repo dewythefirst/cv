@@ -57,7 +57,19 @@ function Calendar(weeksToShow = 2) {
         taskRow.classList.add("row");
         let taskDiv = document.createElement("div");
         taskDiv.classList.add("cell", "main");
-        taskDiv.innerText = "Task " + i;
+        let settingsDiv = document.createElement("div");
+        settingsDiv.classList.add("settings");
+        let colorDiv = document.createElement("div");
+        colorDiv.classList.add("color");
+        let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460"];
+        let color = Math.floor(Math.random() * colorsArray.length);
+        colorDiv.setAttribute("data-color", colorsArray[color]);
+        colorDiv.style.backgroundColor = colorsArray[color];
+        settingsDiv.appendChild(colorDiv);
+        taskDiv.appendChild(settingsDiv);
+        let spanTask = document.createElement("span");
+        spanTask.innerText = "Task " + i;
+        taskDiv.appendChild(spanTask);
         taskRow.appendChild(taskDiv);
         let today = findToday();
         for (let i = 0; i < weeksToShow * 7; i++) {
@@ -86,14 +98,14 @@ let calendar = new Calendar();
 calendar.init();
 
 function taskClick(e) {
-    // todo получить цвет с главной колонки
     let element = e.target;
     if (element.classList.contains("done")) {
-        element.classList.remove("done", "orange");
+        element.classList.remove("done");
         element.removeAttribute("style");
     } else
-        element.classList.add("done", "orange");
+        element.classList.add("done");
     let elementParentRow = element.closest(".row");
+    let elementRowColor = elementParentRow.querySelector(".main .color").getAttribute("data-color");
     let allDays = Array.from(elementParentRow.querySelectorAll(".cell.date"));
     let streakArray = [];
     let counter = 0;
@@ -104,28 +116,30 @@ function taskClick(e) {
                     streakArray[counter++] = allDays[i - 1];
                 streakArray[counter++] = allDays[i];
             } else {
-                allDays[i].style.opacity = "0.25";
+                console.log(elementRowColor);
+                console.log(hexToRgb(elementRowColor));
+                console.log(hexToRgb(elementRowColor).r);
+                allDays[i].style.backgroundColor = `rgba(${hexToRgb(elementRowColor).r}, ${hexToRgb(elementRowColor).g}, ${hexToRgb(elementRowColor).b}, 0.20)`;
             }
         } else {
             if (streakArray.length !== 0) {
-                redrawcellors(streakArray);
+                redrawColors(streakArray, elementRowColor);
                 streakArray = [];
                 counter = 0;
             }
         }
     if (allDays[allDays.length - 1].classList.contains("done")) {
         if (streakArray.length !== 0) {
-            redrawcellors(streakArray);
+            redrawColors(streakArray, elementRowColor);
         }
     }
 }
 
-function redrawcellors(array) {
+function redrawColors(array, elementRowColor) {
     let opacityValue = 100 / array.length;
     opacityValue = opacityValue / 100;
-    // todo менять прозрачность в RGBA цвете
     for (let i = 0; i < array.length; i++) {
-        array[i].style.opacity = Math.max(0.15, opacityValue * (i + 1));
+        array[i].style.backgroundColor = `rgba(${hexToRgb(elementRowColor).r}, ${hexToRgb(elementRowColor).g}, ${hexToRgb(elementRowColor).b}, ${Math.max(0.20, opacityValue * (i + 1))})`;
     }
 }
 
@@ -142,6 +156,14 @@ function lastDayOfMonth(Year, Month) {
     return new Date((new Date(Year, Month, 1)) - 1);
 }
 
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
 /*
 
 let currentMonthNumber = 0;
