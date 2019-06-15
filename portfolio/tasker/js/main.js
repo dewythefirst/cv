@@ -88,7 +88,7 @@ function Calendar(weeksToShow = 2) {
             e.target.closest(".foot").classList.remove("active");
             setTimeout(function () {
                 e.target.closest(".foot").querySelector("span").style.display = "block";
-            }, 500);
+            }, 600);
         } else {
             e.target.closest(".foot").classList.add("active");
             e.target.closest(".foot").querySelector("span").style.display = "none";
@@ -98,7 +98,7 @@ function Calendar(weeksToShow = 2) {
         let footerDiv = document.createElement("div");
         footerDiv.classList.add("row", "foot");
         let spanDiv = document.createElement("span");
-        spanDiv.innerText = "Add new task";
+        spanDiv.innerText = "Add a new task";
         spanDiv.addEventListener("click", showInput);
         footerDiv.appendChild(spanDiv);
         let inputDiv = document.createElement("div");
