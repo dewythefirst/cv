@@ -4,7 +4,7 @@ let weekDays3En = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let bigCalendarWrapper = document.querySelector(".big-calendar");
 
 function Calendar(weeksToShow = 2) {
-    let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460"];
+    let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460", "#C71585", "#DB7093", "#BA55D3", "#4682B4"];
     this.getTheWeekStart = function (date) {
         let dayOfTheWeek = date.getDay() === 0 ? 6 : (date.getDay() - 1);
         let dayInMs = 24 * 60 * 60 * 1000;
