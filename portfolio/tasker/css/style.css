@@ -65,6 +65,7 @@ header {
   align-items: center;
   justify-content: center;
   cursor: default;
+  height: initial;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row.main .cell span.date {
   font-weight: bold;
@@ -75,6 +76,7 @@ header {
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell {
   padding: 5px;
+  height: 30px;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main {
   cursor: pointer;
@@ -171,7 +173,7 @@ header {
   border-radius: 7px;
 }
 
-.shadow, .main-wrapper .first-block .calendar-wrapper .big-calendar, .main-wrapper .first-block .user-wrapper {
+.shadow, .color-picker, .main-wrapper .first-block .calendar-wrapper .big-calendar, .main-wrapper .first-block .user-wrapper {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -182,6 +184,20 @@ header {
   100% {
     box-shadow: 0px 0px 25px 0px lightgreen;
   }
+}
+.color-picker {
+  position: absolute;
+  background-color: #fff;
+  display: flex;
+  padding: 2px;
+}
+.color-picker .little-color {
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+}
+.color-picker .little-color:hover {
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=style.css.map */

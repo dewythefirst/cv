@@ -4,6 +4,7 @@ let weekDays3En = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let bigCalendarWrapper = document.querySelector(".big-calendar");
 
 function Calendar(weeksToShow = 2) {
+    let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460"];
     this.getTheWeekStart = function (date) {
         let dayOfTheWeek = date.getDay() === 0 ? 6 : (date.getDay() - 1);
         let dayInMs = 24 * 60 * 60 * 1000;
@@ -61,10 +62,11 @@ function Calendar(weeksToShow = 2) {
         settingsDiv.classList.add("settings");
         let colorDiv = document.createElement("div");
         colorDiv.classList.add("color");
-        let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460"];
+        colorDiv.addEventListener("click", showColors);
         let color = Math.floor(Math.random() * colorsArray.length);
-        colorDiv.setAttribute("data-color", colorsArray[color]);
-        colorDiv.style.backgroundColor = colorsArray[color];
+        color = hexToRgb(colorsArray[color], "string");
+        colorDiv.setAttribute("data-color", color);
+        colorDiv.style.backgroundColor = color;
         settingsDiv.appendChild(colorDiv);
         taskDiv.appendChild(settingsDiv);
         let spanTask = document.createElement("span");
@@ -127,6 +129,38 @@ function Calendar(weeksToShow = 2) {
             addTask(i);
         addFooter();
     };
+    let copy;
+    let setColor = function (e) {
+        let colorPicker = e.target.closest(".color-picker");
+        let cell = e.target.closest(".cell");
+        let color = e.target.style.backgroundColor;
+        console.log(color);
+        copy.querySelector(".color").setAttribute("data-color", color);
+        copy.querySelector(".color").style.backgroundColor = color;
+        colorPicker.remove();
+        copy.querySelector(".color").addEventListener("click", showColors);
+        cell.replaceWith(copy);
+    };
+    let showColors = function (e) {
+        let element = e.target;
+        if (!element) {
+            element = e;
+        }
+        if (document.querySelector(".color-picker"))
+            throw new Error("Color picker is already opened");
+        let cell = element.closest(".cell");
+        copy = cell.cloneNode(true);
+        let colorPicker = document.createElement("div");
+        colorPicker.classList.add("color-picker");
+        for (let c = 0; c < colorsArray.length; c++) {
+            let littleColor = document.createElement("div");
+            littleColor.classList.add("little-color");
+            littleColor.style.backgroundColor = colorsArray[c];
+            littleColor.addEventListener("click", setColor);
+            colorPicker.appendChild(littleColor);
+        }
+        cell.appendChild(colorPicker);
+    };
 }
 
 let calendar = new Calendar();
@@ -141,6 +175,7 @@ function taskClick(e) {
         element.classList.add("done");
     let elementParentRow = element.closest(".row");
     let elementRowColor = elementParentRow.querySelector(".main .color").getAttribute("data-color");
+    let color = elementRowColor.match(/\d+/g);
     let allDays = Array.from(elementParentRow.querySelectorAll(".cell.date"));
     let streakArray = [];
     let counter = 0;
@@ -151,27 +186,27 @@ function taskClick(e) {
                     streakArray[counter++] = allDays[i - 1];
                 streakArray[counter++] = allDays[i];
             } else {
-                allDays[i].style.backgroundColor = `rgba(${hexToRgb(elementRowColor).r}, ${hexToRgb(elementRowColor).g}, ${hexToRgb(elementRowColor).b}, 0.20)`;
+                allDays[i].style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.20)`;
             }
         } else {
             if (streakArray.length !== 0) {
-                redrawColors(streakArray, elementRowColor);
+                redrawColors(streakArray, color);
                 streakArray = [];
                 counter = 0;
             }
         }
     if (allDays[allDays.length - 1].classList.contains("done")) {
         if (streakArray.length !== 0) {
-            redrawColors(streakArray, elementRowColor);
+            redrawColors(streakArray, color);
         }
     }
 }
 
-function redrawColors(array, elementRowColor) {
+function redrawColors(array, color) {
     let opacityValue = 100 / array.length;
     opacityValue = opacityValue / 100;
     for (let i = 0; i < array.length; i++) {
-        array[i].style.backgroundColor = `rgba(${hexToRgb(elementRowColor).r}, ${hexToRgb(elementRowColor).g}, ${hexToRgb(elementRowColor).b}, ${Math.max(0.20, opacityValue * (i + 1))})`;
+        array[i].style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${Math.max(0.20, opacityValue * (i + 1))})`;
     }
 }
 
@@ -188,15 +223,22 @@ function lastDayOfMonth(Year, Month) {
     return new Date((new Date(Year, Month, 1)) - 1);
 }
 
-function hexToRgb(hex) {
+function hexToRgb(hex, how) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
+    if (how === "string") {
+        return "rgb(" + parseInt(result[1], 16) + ", " + parseInt(result[2], 16) + ", " + parseInt(result[3], 16) + ")";
+    } else
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
 }
 
+const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+    const hex = x.toString(16)
+    return hex.length === 1 ? '0' + hex : hex
+}).join('');
 /*
 
 let currentMonthNumber = 0;
