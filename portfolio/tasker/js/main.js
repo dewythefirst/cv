@@ -134,12 +134,12 @@ function Calendar(weeksToShow = 2) {
         let colorPicker = e.target.closest(".color-picker");
         let cell = e.target.closest(".cell");
         let color = e.target.style.backgroundColor;
-        console.log(color);
         copy.querySelector(".color").setAttribute("data-color", color);
         copy.querySelector(".color").style.backgroundColor = color;
         colorPicker.remove();
         copy.querySelector(".color").addEventListener("click", showColors);
         cell.replaceWith(copy);
+        renewColors(copy, color);
     };
     let showColors = function (e) {
         let element = e.target;
@@ -207,6 +207,19 @@ function redrawColors(array, color) {
     opacityValue = opacityValue / 100;
     for (let i = 0; i < array.length; i++) {
         array[i].style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${Math.max(0.20, opacityValue * (i + 1))})`;
+    }
+}
+
+function renewColors(el, color) {
+    el = el.closest(".row");
+    color = color.match(/\d+/g);
+    console.log(color);
+    let array = Array.from(el.querySelectorAll(".done"));
+    console.log(array);
+    for (var i = 0; i < array.length; i++) {
+        let colorN = array[i].style.backgroundColor;
+        colorN = colorN.replace(/\(\d+, \d+, \d+/g, `(${color[0]}, ${color[1]}, ${color[2]}`);
+        array[i].style.backgroundColor = colorN;
     }
 }
 
