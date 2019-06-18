@@ -53,7 +53,7 @@ function Calendar(weeksToShow = 2) {
                 return i;
         }
     };
-    let addTask = function (i) { // сюда передавать ID например, где будет храниться подробная инфа
+    let addTask = function (i, name) { // сюда передавать ID например, где будет храниться подробная инфа
         let taskRow = document.createElement("div");
         taskRow.classList.add("row");
         let taskDiv = document.createElement("div");
@@ -65,12 +65,15 @@ function Calendar(weeksToShow = 2) {
         colorDiv.addEventListener("click", showColors);
         let color = Math.floor(Math.random() * colorsArray.length);
         color = hexToRgb(colorsArray[color], "string");
-        colorDiv.setAttribute("data-color", color);
+        // colorDiv.setAttribute("data-color", color);
         colorDiv.style.backgroundColor = color;
         settingsDiv.appendChild(colorDiv);
         taskDiv.appendChild(settingsDiv);
         let spanTask = document.createElement("span");
-        spanTask.innerText = "Task " + i;
+        if (name)
+            spanTask.innerText = name;
+        else
+            spanTask.innerText = "Task " + i;
         taskDiv.appendChild(spanTask);
         taskRow.appendChild(taskDiv);
         let today = findToday();
@@ -82,7 +85,8 @@ function Calendar(weeksToShow = 2) {
             taskDiv.addEventListener("click", taskClick);
             taskRow.appendChild(taskDiv);
         }
-        bigCalendarWrapper.appendChild(taskRow);
+        let footer = document.querySelector(".foot");
+        bigCalendarWrapper.insertBefore(taskRow, footer);
     };
     let showInput = function (flag) {
         let e = window.event;
@@ -111,6 +115,12 @@ function Calendar(weeksToShow = 2) {
         let button = document.createElement("div");
         button.classList.add("btn", "add");
         button.innerText = "Add";
+        button.addEventListener("click", function () {
+            if (input.value.length > 1) {
+                addTask("i", input.value);
+                showInput(false);
+            }
+        });
         inputDiv.appendChild(button);
         button = document.createElement("div");
         button.classList.add("btn", "cancel");
@@ -125,16 +135,16 @@ function Calendar(weeksToShow = 2) {
     this.init = function () {
         clearCalendarWrapper();
         initializeHeader();
+        addFooter();
         for (let i = 0; i < 10; i++)
             addTask(i);
-        addFooter();
     };
     let copy;
     let setColor = function (e) {
         let colorPicker = e.target.closest(".color-picker");
         let cell = e.target.closest(".cell");
         let color = e.target.style.backgroundColor;
-        copy.querySelector(".color").setAttribute("data-color", color);
+        // copy.querySelector(".color").setAttribute("data-color", color);
         copy.querySelector(".color").style.backgroundColor = color;
         colorPicker.remove();
         copy.querySelector(".color").addEventListener("click", showColors);
@@ -174,7 +184,7 @@ function taskClick(e) {
     } else
         element.classList.add("done");
     let elementParentRow = element.closest(".row");
-    let elementRowColor = elementParentRow.querySelector(".main .color").getAttribute("data-color");
+    let elementRowColor = elementParentRow.querySelector(".main .color").style.backgroundColor;
     let color = elementRowColor.match(/\d+/g);
     let allDays = Array.from(elementParentRow.querySelectorAll(".cell.date"));
     let streakArray = [];

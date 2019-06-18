@@ -85,6 +85,7 @@ header {
   border-right: 1px solid lightgray;
   display: flex;
   align-items: center;
+  padding: 5px 10px;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main:hover .settings {
   width: 20px;
