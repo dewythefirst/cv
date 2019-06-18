@@ -97,6 +97,7 @@ function Calendar(weeksToShow = 2) {
             }, 600);
         } else {
             e.target.closest(".foot").classList.add("active");
+            e.target.closest(".foot").querySelector("input").focus();
             e.target.closest(".foot").querySelector("span").style.display = "none";
         }
     };

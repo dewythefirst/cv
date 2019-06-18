@@ -8,7 +8,6 @@ body {
   overflow: visible;
   margin: 0;
   padding: 0;
-  font-family: "Raleway", sans-serif;
 }
 
 a {
@@ -100,6 +99,12 @@ header {
   display: flex;
   align-items: center;
   padding: 5px 10px;
+  width: 150px;
+}
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main:hover .settings {
   width: 20px;
@@ -192,6 +197,10 @@ header {
 
 .shadow, .color-picker, .main-wrapper .first-block .calendar-wrapper .big-calendar, .main-wrapper .first-block .user-wrapper {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.font, body, .main-wrapper .first-block .calendar-wrapper .big-calendar .row.foot .wrapper input {
+  font-family: "Raleway", sans-serif;
 }
 
 @keyframes bloom {
