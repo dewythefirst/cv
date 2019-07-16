@@ -44,7 +44,7 @@ header {
   justify-content: space-around;
 }
 .main-wrapper .first-block .calendar-wrapper {
-  width: 70%;
+  width: 100%;
 }
 @media only screen and (max-width: 768px) {
   .main-wrapper .first-block .calendar-wrapper {
@@ -86,7 +86,7 @@ header {
   font-size: 0.9em;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell {
-  padding: 5px;
+  padding: 3px;
   height: 30px;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main {
@@ -128,7 +128,6 @@ header {
   width: calc(100% / 14);
   transition: 0.75s;
   background-color: #fff;
-  min-width: 50px;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.date:not(:last-child) {
   border-right: 1px solid #f5f5f5;
@@ -188,12 +187,12 @@ header {
   width: 100%;
 }
 .main-wrapper .first-block .user-wrapper {
+  display: none;
   width: 250px;
   height: 350px;
   border-radius: 7px;
   background-color: white;
   padding: 10px;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

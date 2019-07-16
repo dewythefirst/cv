@@ -52,7 +52,7 @@ header {
     justify-content: space-around;
 
     .calendar-wrapper {
-      width: 70%;
+      width: 100%;
       @media only screen and (max-width: 768px) {
         width: 100%;
       }
@@ -99,7 +99,7 @@ header {
           }
 
           .cell {
-            padding: 5px;
+            padding: 3px;
             height: 30px;
 
             &.main {
@@ -151,7 +151,7 @@ header {
               width: calc(100% / 14);
               transition: 0.75s;
               background-color: #fff;
-              min-width: 50px;
+              //min-width: 50px;
               //min-height: 50px;
               @extend .done;
 
@@ -234,13 +234,14 @@ header {
 
 
     .user-wrapper {
+      display: none;
       @extend .shadow;
       width: 250px;
       height: 350px;
       border-radius: 7px;
       background-color: white;
       padding: 10px;
-      display: flex;
+      //display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;

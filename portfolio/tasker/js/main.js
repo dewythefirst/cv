@@ -3,15 +3,21 @@ let weekDaysFullEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "S
 let weekDays3En = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let bigCalendarWrapper = document.querySelector(".big-calendar");
 
-function Calendar(weeksToShow = 2) {
+function Calendar(daysToShow = 2) {
     let colorsArray = ["#FE2712", "#FC600A", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#8601AF", "#C21460", "#C71585", "#DB7093", "#BA55D3", "#4682B4"];
     this.getTheWeekStart = function (date) {
         let dayOfTheWeek = date.getDay() === 0 ? 6 : (date.getDay() - 1);
         let dayInMs = 24 * 60 * 60 * 1000;
         return new Date(date - dayOfTheWeek * dayInMs);
     };
+    this.getTheMonthStart = function () {
+        let date = new Date();
+        date = new Date(date.getFullYear(), date.getMonth(), 1);
+        return date;
+    };
     let date = new Date();
-    date = this.getTheWeekStart(date);
+    // date = this.getTheWeekStart(date);
+    date = this.getTheMonthStart();
     let tasksCount = Math.max(1, 10);
     let dayInMs = 24 * 60 * 60 * 1000;
     let clearCalendarWrapper = function () {
@@ -24,7 +30,8 @@ function Calendar(weeksToShow = 2) {
         cellDiv.classList.add("cell", "main");
         cellDiv.innerText = "Task List";
         rowDiv.appendChild(cellDiv);
-        for (let i = 0; i < weeksToShow * 7; i++) { // cells loop
+        daysToShow = new Date(new Date().getMonth(), new Date().getFullYear(), 0).getDate(); // кол-во дней в месяце
+        for (let i = 0; i < daysToShow; i++) { // cells loop
             cellDiv = document.createElement("div");
             if (date.getDate() === new Date().getDate())
                 if (date.getMonth() === new Date().getMonth())
@@ -77,7 +84,7 @@ function Calendar(weeksToShow = 2) {
         taskDiv.appendChild(spanTask);
         taskRow.appendChild(taskDiv);
         let today = findToday();
-        for (let i = 0; i < weeksToShow * 7; i++) {
+        for (let i = 0; i < daysToShow; i++) {
             taskDiv = document.createElement("div");
             taskDiv.classList.add("cell", "date");
             if (i === today)
@@ -214,7 +221,11 @@ function taskClick(e) {
 }
 
 function redrawColors(array, color) {
-    let opacityValue = 100 / array.length;
+    let opacityValue;
+    if (array.length >= 10)
+        opacityValue = 100 / array.length;
+    else
+        opacityValue = 10;
     opacityValue = opacityValue / 100;
     for (let i = 0; i < array.length; i++) {
         array[i].style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${Math.max(0.20, opacityValue * (i + 1))})`;
