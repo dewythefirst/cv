@@ -85,9 +85,13 @@ header {
   color: gray;
   font-size: 0.9em;
 }
+.main-wrapper .first-block .calendar-wrapper .big-calendar .row.main .cell.today {
+  background-color: #b9d9f9;
+}
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell {
-  padding: 3px;
+  padding: 5px;
   height: 30px;
+  min-width: 40px;
 }
 .main-wrapper .first-block .calendar-wrapper .big-calendar .row .cell.main {
   cursor: pointer;

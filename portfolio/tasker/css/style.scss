@@ -93,14 +93,15 @@ header {
               }
 
               &.today {
-
+                background-color: #b9d9f9;
               }
             }
           }
 
           .cell {
-            padding: 3px;
+            padding: 5px;
             height: 30px;
+            min-width: 40px;
 
             &.main {
               cursor: pointer;
